@@ -5,7 +5,7 @@ import ActionsEnums from '../../../helpers/enums/ActionEnums';
 
 export default function reducerCommon(
     state: CommonState = commonInitialState,
-    action: IAction<ActionsEnums>,
+    action: IAction<ActionsEnums>
 ): CommonState {
     switch (action.type) {
         case ActionsEnums.LOADING:
