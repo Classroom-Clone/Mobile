@@ -31,21 +31,6 @@ function BottomTabNavigator() {
                 component={Home}
                 options={({ navigation }: RootTabScreenProps<'Main'>) => ({
                     title: 'Pierwsza strona',
-                    headerRight: () => (
-                        <Pressable
-                            onPress={() => navigation.navigate('Modal')}
-                            style={({ pressed }) => ({
-                                opacity: pressed ? 0.5 : 1
-                            })}
-                        >
-                            <FontAwesome
-                                name="info-circle"
-                                size={25}
-                                color={Colors[colorScheme].text}
-                                style={{ marginRight: 15 }}
-                            />
-                        </Pressable>
-                    )
                 })}
             />
         </BottomTab.Navigator>
