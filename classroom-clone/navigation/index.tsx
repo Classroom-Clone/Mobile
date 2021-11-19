@@ -30,7 +30,7 @@ function BottomTabNavigator() {
                 name="Main"
                 component={Home}
                 options={({ navigation }: RootTabScreenProps<'Main'>) => ({
-                    title: 'Pierwsza strona',
+                    title: 'Pierwsza strona'
                 })}
             />
         </BottomTab.Navigator>
