@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-elements/dist/buttons/Button';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import LinearGradient from 'react-native-linear-gradient';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 
@@ -13,21 +15,40 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold'
+        marginLeft: '5%',
+        marginRight: '5%',
+        textAlign: 'center',
     },
     separator: {
         marginVertical: 30,
         height: 1,
         width: '80%'
+    },
+    button: {
+        padding: '5%',
     }
 });
 
-export default function Home({ navigation }: RootTabScreenProps<'Main'>) {
+export default function Home({ navigation }: any) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Strona główna</Text>
+            <Text style={styles.title}>Witamy w aplikacji do zarządzania klasą online</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <EditScreenInfo />
+            <View style={styles.button}>
+                <Button
+                    title="Zaloguj się"
+                    style={styles.button}
+                    buttonStyle={{ backgroundColor: 'grey' }}
+                />
+            </View>
+            <Text style={styles.title}>lub</Text>
+            <View style={styles.button} >
+                <Button
+                    buttonStyle={{ backgroundColor: 'grey' }}
+                    title="Zarejestruj się"
+                    style={styles.button}
+                />
+            </View>
         </View>
     );
 }
