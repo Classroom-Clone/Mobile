@@ -1,11 +1,11 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
-import Navigator from './navigation/drawer';
 
 import useCachedResources from './hooks/useCachedResources';
 import { Store } from './store';
 import React from 'react';
 import ThemeProvider from 'react-native-elements/dist/config/ThemeProvider';
+import MyStack from './navigation/router';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -21,13 +21,13 @@ export default function App() {
         return null;
     } else {
         return (
-            <Provider store={Store}>
+            // <Provider store={Store}>
                 <ThemeProvider theme={theme}>
                     <SafeAreaProvider>
-                        <Navigator />
+                        <MyStack/>
                     </SafeAreaProvider>
                 </ThemeProvider>
-            </Provider>
+            // </Provider>
         );
     }
 }

@@ -1,11 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import LinearGradient from 'react-native-linear-gradient';
-
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
 
 const styles = StyleSheet.create({
     container: {
@@ -39,6 +35,9 @@ export default function Home({ navigation }: any) {
                     title="Zaloguj się"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
+                    onPress={() =>
+                        navigation.navigate('NotFoundScreen')
+                    }
                 />
             </View>
             <Text style={styles.title}>lub</Text>
@@ -47,6 +46,9 @@ export default function Home({ navigation }: any) {
                     buttonStyle={{ backgroundColor: 'grey' }}
                     title="Zarejestruj się"
                     style={styles.button}
+                    onPress={() =>
+                        navigation.navigate('NotFoundScreen')
+                    }
                 />
             </View>
         </View>
