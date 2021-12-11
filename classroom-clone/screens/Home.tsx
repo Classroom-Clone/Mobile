@@ -36,7 +36,7 @@ export default function Home({ navigation }: any) {
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
                     onPress={() =>
-                        navigation.navigate('NotFoundScreen')
+                        navigation.navigate('Login')
                     }
                 />
             </View>
@@ -47,7 +47,7 @@ export default function Home({ navigation }: any) {
                     title="Zarejestruj się"
                     style={styles.button}
                     onPress={() =>
-                        navigation.navigate('NotFoundScreen')
+                        navigation.navigate('Registration')
                     }
                 />
             </View>
