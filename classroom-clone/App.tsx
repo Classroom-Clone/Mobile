@@ -12,9 +12,9 @@ export default function App() {
     const theme = {
         Button: {
             titleStyle: {
-                color: 'red',
-            },
-        },
+                color: 'red'
+            }
+        }
     };
 
     if (!isLoadingComplete) {
@@ -22,11 +22,11 @@ export default function App() {
     } else {
         return (
             // <Provider store={Store}>
-                <ThemeProvider theme={theme}>
-                    <SafeAreaProvider>
-                        <MyStack/>
-                    </SafeAreaProvider>
-                </ThemeProvider>
+            <ThemeProvider theme={theme}>
+                <SafeAreaProvider>
+                    <MyStack />
+                </SafeAreaProvider>
+            </ThemeProvider>
             // </Provider>
         );
     }

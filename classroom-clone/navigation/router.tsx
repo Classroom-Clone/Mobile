@@ -10,39 +10,30 @@ import MainPage from '../screens/MainPage';
 
 const Stack = createNativeStackNavigator();
 
-
-
 const MyStack = () => {
-  return (
-    <NavigationContainer>
-       <Stack.Navigator >
-        <Stack.Screen
-          name="MyDrawer"
-          component={MyDrawer}
-          options={{ headerShown: false }}/>
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{ title: 'Logowanie' }}
-        />
-        <Stack.Screen
-          name="Registration"
-          component={Registration}
-          options={{ title: 'Rejestracja' }}
-        />
-        <Stack.Screen
-          name="MainPage"
-          component={MainPage}
-          options={{ title: 'Strona Główna' }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ title: 'Welcome' }}
-        />
-        <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="MyDrawer"
+                    component={MyDrawer}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen name="Login" component={Login} options={{ title: 'Logowanie' }} />
+                <Stack.Screen
+                    name="Registration"
+                    component={Registration}
+                    options={{ title: 'Rejestracja' }}
+                />
+                <Stack.Screen
+                    name="MainPage"
+                    component={MainPage}
+                    options={{ title: 'Strona Główna' }}
+                />
+                <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
+                <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 };
 export default MyStack;

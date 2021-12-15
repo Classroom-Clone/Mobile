@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: '5%',
         marginRight: '5%',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     separator: {
         marginVertical: 30,
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: '80%'
     },
     button: {
-        padding: '5%',
+        padding: '5%'
     }
 });
 
@@ -35,20 +35,16 @@ export default function Home({ navigation }: any) {
                     title="Zaloguj się"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
-                    onPress={() =>
-                        navigation.navigate('Login')
-                    }
+                    onPress={() => navigation.navigate('Login')}
                 />
             </View>
             <Text style={styles.title}>lub</Text>
-            <View style={styles.button} >
+            <View style={styles.button}>
                 <Button
                     buttonStyle={{ backgroundColor: 'grey' }}
                     title="Zarejestruj się"
                     style={styles.button}
-                    onPress={() =>
-                        navigation.navigate('Registration')
-                    }
+                    onPress={() => navigation.navigate('Registration')}
                 />
             </View>
         </View>

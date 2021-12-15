@@ -43,26 +43,26 @@ export default function Registration({ navigation }: any) {
                 <Input
                     style={styles.input}
                     placeholder="Imię"
-                    onChangeText={value => setName(value)}
+                    onChangeText={(value) => setName(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Nazwisko"
-                    onChangeText={value => setForname(value)}
+                    onChangeText={(value) => setForname(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Login"
-                    onChangeText={value => setLogin(value)}
+                    onChangeText={(value) => setLogin(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Hasło"
                     secureTextEntry={true}
-                    onChangeText={value => setPassword(value)}
+                    onChangeText={(value) => setPassword(value)}
                 />
             </View>
             <View style={styles.button}>
@@ -70,9 +70,7 @@ export default function Registration({ navigation }: any) {
                     title="Zarejestruj"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
-                    onPress={() =>
-                        navigation.navigate('MainPage')
-                    }
+                    onPress={() => navigation.navigate('MainPage')}
                 />
             </View>
         </View>

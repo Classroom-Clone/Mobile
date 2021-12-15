@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     class: {
         display: 'flex',
         flexDirection: 'row',
-        backgroundColor: "grey",
+        backgroundColor: 'grey',
         margin: '10%',
         height: '20%',
         flexWrap: 'wrap'
@@ -29,25 +29,18 @@ const styles = StyleSheet.create({
     teacherText: {
         padding: '5%',
         margin: '5%',
-        backgroundColor: "grey",
+        backgroundColor: 'grey',
         textAlign: 'right'
-    },
-
+    }
 });
 export default function MainPage({ navigation }: any) {
     return (
         <View style={styles.container}>
             <View style={styles.class}>
-                <View
-                    style={{ width: "40%", height: "100%", backgroundColor: "yellow" }}
-                />
+                <View style={{ width: '40%', height: '100%', backgroundColor: 'yellow' }} />
                 <View>
-                    <Text style={styles.nameText}>
-                        Matematyka
-                    </Text>
-                    <Text style={styles.teacherText}>
-                        Barnaba bazyli
-                    </Text>
+                    <Text style={styles.nameText}>Matematyka</Text>
+                    <Text style={styles.teacherText}>Barnaba bazyli</Text>
                 </View>
             </View>
         </View>

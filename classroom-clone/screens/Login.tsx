@@ -9,13 +9,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'stretch',
+        alignItems: 'stretch'
     },
     title: {
         fontSize: 20,
         marginLeft: '5%',
         marginRight: '5%',
-        textAlign: 'center',
+        textAlign: 'center'
     },
     input: {
         marginVertical: 10,
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     button: {
-        padding: '10%',
+        padding: '10%'
     },
     viwew: {
-        marginTop: '10',
+        marginTop: '10'
     }
 });
 
@@ -42,14 +42,14 @@ export default function Login({ navigation }: any) {
                 <Input
                     style={styles.input}
                     placeholder="Login"
-                    onChangeText={value => setLogin(value)}
+                    onChangeText={(value) => setLogin(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Hasło"
                     secureTextEntry={true}
-                    onChangeText={value => setPassword(value)}
+                    onChangeText={(value) => setPassword(value)}
                 />
             </View>
             <View style={styles.button}>
@@ -57,9 +57,7 @@ export default function Login({ navigation }: any) {
                     title="Zaloguj"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
-                    onPress={() =>
-                        navigation.navigate('MainPage')
-                    }
+                    onPress={() => navigation.navigate('MainPage')}
                 />
             </View>
         </View>
