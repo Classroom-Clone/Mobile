@@ -30,7 +30,7 @@ const MyStack = () => {
                     component={MainPage}
                     options={{ title: 'Strona Główna' }}
                 />
-                <Stack.Screen name="Home" component={Home} options={{ title: 'Welcome' }} />
+                <Stack.Screen name="Start" component={Home} options={{ title: 'Strona Główna' }} />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>
         </NavigationContainer>
