@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         textAlign: 'center',
         height: 1,
-        width: '50%'
+        width: '50%',
+        color: 'white'
     },
     button: {
         padding: '10%',
@@ -32,25 +33,28 @@ const styles = StyleSheet.create({
 });
 
 export default function Login({ navigation }: any) {
+    const [login, setLogin] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
     return (
         <View style={styles.container}>
             <View>
                 <Input
                     style={styles.input}
                     placeholder="Login"
-                    //onChangeText={value => this.setState({ comment: value })}
+                    onChangeText={value => setLogin(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Hasło"
-                    secureTextEntry={true} 
-                    //onChangeText={value => this.setState({ comment: value })}
+                    secureTextEntry={true}
+                    onChangeText={value => setPassword(value)}
                 />
             </View>
             <View style={styles.button}>
                 <Button
-                    title="Zaloguj się"
+                    title="Zaloguj"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
                     onPress={() =>
