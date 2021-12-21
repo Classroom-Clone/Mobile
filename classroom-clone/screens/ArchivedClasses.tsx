@@ -20,6 +20,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
+    buttonStyle: {
+        backgroundColor: 'rgba(78, 116, 289, 1)',
+        borderRadius: 3,
+    },
+    containerStyle: {
+        width: 200,
+        marginHorizontal: 50,
+        marginVertical: 10,
+    }
 });
 
 export default function ArchivedClasses() {
@@ -64,15 +73,8 @@ export default function ArchivedClasses() {
             <View style={styles.footer}>
                 <Button
                     title={"Załaduj więcej"}
-                    buttonStyle={{
-                        backgroundColor: 'rgba(78, 116, 289, 1)',
-                        borderRadius: 3,
-                    }}
-                    containerStyle={{
-                        width: 200,
-                        marginHorizontal: 50,
-                        marginVertical: 10,
-                    }}
+                    buttonStyle={styles.buttonStyle}
+                    containerStyle={styles.containerStyle}
                     onPress={() => {
                         setPerPage(perPage + 15);
                         getArchivedClasses().finally();
