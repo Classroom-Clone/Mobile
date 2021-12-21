@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Button } from 'react-native-elements';
-import { Image } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 
@@ -9,9 +7,7 @@ const styles = StyleSheet.create({
         flex: 1,
         height: '100%',
         width: '100%',
-        backgroundColor: 'black'
     },
-
     class: {
         display: 'flex',
         flexDirection: 'row',
@@ -33,7 +29,7 @@ const styles = StyleSheet.create({
         textAlign: 'right'
     }
 });
-export default function MainPage({ navigation }: any) {
+export default function MainPage() {
     return (
         <View style={styles.container}>
             <View style={styles.class}>

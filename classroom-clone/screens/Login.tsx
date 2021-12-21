@@ -1,9 +1,8 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import { Text, View } from '../components/Themed';
+import { View } from '../components/Themed';
 
 const styles = StyleSheet.create({
     container: {
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     button: {
         padding: '10%'
     },
-    viwew: {
+    view: {
         marginTop: '10'
     }
 });

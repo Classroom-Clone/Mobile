@@ -7,6 +7,7 @@ import MyDrawer from './drawer';
 import Login from '../screens/Login';
 import Registration from '../screens/Registration';
 import MainPage from '../screens/MainPage';
+import ArchivedClasses from "../screens/ArchivedClasses";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,9 +32,11 @@ const MyStack = () => {
                     options={{ title: 'Strona Główna' }}
                 />
                 <Stack.Screen name="Start" component={Home} options={{ title: 'Strona Główna' }} />
+                <Stack.Screen name="ArchivedClasses" component={ArchivedClasses} options={{ title:'Zarchiwizowane klasy' }} />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>
         </NavigationContainer>
     );
 };
+
 export default MyStack;
