@@ -1,13 +1,13 @@
-import React, {useState} from 'react';
-import {StyleSheet} from "react-native";
-import {Text, View} from "../components/Themed";
-import {Input} from "react-native-elements";
-import {Button} from "react-native-elements/dist/buttons/Button";
-import {API_URL} from "@env";
+import React, { useState } from 'react';
+import { StyleSheet } from 'react-native';
+import { Text, View } from '../components/Themed';
+import { Input } from 'react-native-elements';
+import { Button } from 'react-native-elements/dist/buttons/Button';
+import { API_URL } from '@env';
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     title: {
         fontSize: 20,
@@ -32,35 +32,39 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function JoinClass({navigation}: any) {
+export default function JoinClass({ navigation }: any) {
     const [joinCode, setJoinCode] = useState('');
 
     const joinToClass = async () => {
-        const URL = API_URL + "me/classrooms/join";
-        const USER_TOKEN = "token";
+        const URL = API_URL + 'me/classrooms/join';
+        const USER_TOKEN = 'token';
 
         await fetch(URL, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + USER_TOKEN
+                Authorization: 'Bearer ' + USER_TOKEN
             },
             body: JSON.stringify({
-                join_code: joinCode,
-            }),
-        }).then(function (response: Response) {
-            if (response.ok) {
-                navigation.navigate('MainPage');
-            }
-        }).catch((error) => {
-            console.error(error);
-        });
-    }
+                join_code: joinCode
+            })
+        })
+            .then(function (response: Response) {
+                if (response.ok) {
+                    navigation.navigate('MainPage');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Aby dołączyć do zajęć wpisz kod klasy, który otrzymałeś od prowadzącego</Text>
+            <Text style={styles.title}>
+                Aby dołączyć do zajęć wpisz kod klasy, który otrzymałeś od prowadzącego
+            </Text>
             <Input
                 style={styles.input}
                 placeholder="Kod zajęć"
