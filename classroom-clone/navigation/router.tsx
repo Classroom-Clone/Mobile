@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../screens/Home';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import MyDrawer from './drawer';
@@ -8,6 +8,7 @@ import Login from '../screens/Login';
 import Registration from '../screens/Registration';
 import MainPage from '../screens/MainPage';
 import ArchivedClasses from "../screens/ArchivedClasses";
+import JoinClass from "../screens/JoinClass";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,22 +19,27 @@ const MyStack = () => {
                 <Stack.Screen
                     name="MyDrawer"
                     component={MyDrawer}
-                    options={{ headerShown: false }}
+                    options={{headerShown: false}}
                 />
-                <Stack.Screen name="Login" component={Login} options={{ title: 'Logowanie' }} />
+                <Stack.Screen name="Login" component={Login} options={{title: 'Logowanie'}}/>
                 <Stack.Screen
                     name="Registration"
                     component={Registration}
-                    options={{ title: 'Rejestracja' }}
+                    options={{title: 'Rejestracja'}}
                 />
                 <Stack.Screen
                     name="MainPage"
                     component={MainPage}
-                    options={{ title: 'Strona Główna' }}
+                    options={{title: 'Strona Główna'}}
                 />
-                <Stack.Screen name="Start" component={Home} options={{ title: 'Strona Główna' }} />
-                <Stack.Screen name="ArchivedClasses" component={ArchivedClasses} options={{ title:'Zarchiwizowane klasy' }} />
-                <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
+                <Stack.Screen name="Start" component={Home} options={{title: 'Strona Główna'}}/>
+                <Stack.Screen
+                    name="ArchivedClasses"
+                    component={ArchivedClasses}
+                    options={{title: 'Zarchiwizowane klasy'}}
+                />
+                <Stack.Screen name="JoinClass" component={JoinClass} options={{title: 'Dołącz do klasy'}}/>
+                <Stack.Screen name="NotFoundScreen" component={NotFoundScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );
