@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import ErrorModal from '../components/ErrorModal';
+import { getResponseJson } from '../helpers/functions/GetResponseJson';
 import { API_URL } from '@env';
 
 const styles = StyleSheet.create({
@@ -34,6 +36,15 @@ const styles = StyleSheet.create({
 
 export default function JoinClass({ navigation }: any) {
     const [joinCode, setJoinCode] = useState('');
+    const [errorVisible, setErrorVisible] = useState(false);
+
+    const redirectToClassroom = () => {
+        navigation.navigate('MainPage');
+    };
+
+    const toggleErrorVisible = () => {
+        setErrorVisible(!errorVisible);
+    };
 
     const joinToClass = async () => {
         const URL = API_URL + 'me/classrooms/join';
@@ -50,14 +61,9 @@ export default function JoinClass({ navigation }: any) {
                 join_code: joinCode
             })
         })
-            .then(function (response: Response) {
-                if (response.ok) {
-                    navigation.navigate('MainPage');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+            .then(getResponseJson)
+            .then(redirectToClassroom)
+            .catch(toggleErrorVisible);
     };
 
     return (
@@ -78,6 +84,12 @@ export default function JoinClass({ navigation }: any) {
                     onPress={joinToClass}
                 />
             </View>
+            <ErrorModal
+                title="Wystąpił błąd"
+                description="Sprawdz czy nie zostały wprowadzone błędne dane."
+                visible={errorVisible}
+                onPress={toggleErrorVisible}
+            />
         </View>
     );
 }

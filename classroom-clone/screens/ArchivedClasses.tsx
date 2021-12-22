@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList, StyleSheet } from 'react-native';
+import { ActivityIndicator, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import { View } from '../components/Themed';
+import { View, FlatList } from '../components/Themed';
 import ClassContainer from '../components/ClassContainer';
 import { API_URL } from '@env';
 
@@ -65,20 +65,24 @@ export default function ArchivedClasses() {
         <ClassContainer name={item.name} color={item.color} />
     );
 
-    const renderFooter = () => {
-        return (
-            <View style={styles.footer}>
-                <Button
-                    title={'Załaduj więcej'}
-                    buttonStyle={styles.buttonStyle}
-                    containerStyle={styles.containerStyle}
-                    onPress={() => {
-                        setPerPage(perPage + 15);
-                        getArchivedClasses().finally();
-                    }}
-                />
-            </View>
-        );
+    const renderButton = () => {
+        const onPress = () => {
+            setPerPage(perPage + 15);
+            getArchivedClasses().finally();
+        };
+
+        if (totalResults > perPage) {
+            return (
+                <View style={styles.footer}>
+                    <Button
+                        title="Załaduj więcej"
+                        buttonStyle={styles.buttonStyle}
+                        containerStyle={styles.containerStyle}
+                        onPress={onPress}
+                    />
+                </View>
+            );
+        }
     };
 
     useEffect(() => {
@@ -88,16 +92,14 @@ export default function ArchivedClasses() {
     return (
         <View style={styles.container}>
             {isLoading ? (
-                <ActivityIndicator style={styles.indicator} size={'large'} />
+                <ActivityIndicator style={styles.indicator} size="large" />
             ) : (
-                <div>
-                    <FlatList
-                        data={data}
-                        renderItem={renderClassContainer}
-                        keyExtractor={(item) => item.id}
-                        ListFooterComponent={totalResults > perPage ? renderFooter : null}
-                    />
-                </div>
+                <FlatList
+                    data={data}
+                    renderItem={renderClassContainer}
+                    keyExtractor={(item) => item.id}
+                    ListFooterComponent={renderButton()}
+                />
             )}
         </View>
     );
