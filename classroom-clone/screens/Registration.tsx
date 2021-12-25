@@ -1,4 +1,3 @@
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     button: {
         padding: '10%'
     },
-    viwew: {
+    view: {
         marginTop: '10'
     }
 });
@@ -35,21 +34,21 @@ const styles = StyleSheet.create({
 export default function Registration({ navigation }: any) {
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [forname, setForname] = React.useState('');
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
     return (
         <View style={styles.container}>
             <View>
                 <Input
                     style={styles.input}
                     placeholder="Imię"
-                    onChangeText={(value) => setName(value)}
+                    onChangeText={(value) => setFirstName(value)}
                 />
 
                 <Input
                     style={styles.input}
                     placeholder="Nazwisko"
-                    onChangeText={(value) => setForname(value)}
+                    onChangeText={(value) => setLastName(value)}
                 />
 
                 <Input

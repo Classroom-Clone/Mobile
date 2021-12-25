@@ -7,12 +7,17 @@
 cd classroom-clone
 ```
 
-### 2. Installation:
+### 2. Create .env file based on .env.example:
+```shell script
+cp .env.example .env
+```
+
+### 3. Installation:
 ```shell script
 npm install
 ```
 
-### 3. Compiles and hot-reloads for development:
+### 4. Compiles and hot-reloads for development:
 ```shell script
 npm run start
 ```
