@@ -9,8 +9,20 @@ import Registration from '../screens/Registration';
 import MainPage from '../screens/MainPage';
 import ArchivedClasses from '../screens/ArchivedClasses';
 import JoinClass from '../screens/JoinClass';
+import ClassView from '../screens/ClassView';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+export function MyTabs() {
+    return (
+        <Tab.Navigator>
+            <Tab.Screen name="ClassVieww" component={ClassView} />
+            <Tab.Screen name="Settings" component={ClassView} />
+        </Tab.Navigator>
+    );
+}
 
 const MyStack = () => {
     return (
@@ -27,11 +39,6 @@ const MyStack = () => {
                     component={Registration}
                     options={{ title: 'Rejestracja' }}
                 />
-                <Stack.Screen
-                    name="MainPage"
-                    component={MainPage}
-                    options={{ title: 'Strona Główna' }}
-                />
                 <Stack.Screen name="Start" component={Home} options={{ title: 'Strona Główna' }} />
                 <Stack.Screen
                     name="ArchivedClasses"
@@ -42,6 +49,12 @@ const MyStack = () => {
                     name="JoinClass"
                     component={JoinClass}
                     options={{ title: 'Dołącz do klasy' }}
+                />
+                <Stack.Screen
+                    name="ClassView"
+                    component={MyTabs}
+                    options={{ headerShown: false, }}
+
                 />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>

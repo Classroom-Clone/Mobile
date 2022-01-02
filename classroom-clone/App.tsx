@@ -21,13 +21,13 @@ export default function App() {
         return null;
     } else {
         return (
-            // <Provider store={Store}>
-            <ThemeProvider theme={theme}>
-                <SafeAreaProvider>
-                    <MyStack />
-                </SafeAreaProvider>
-            </ThemeProvider>
-            // </Provider>
+            <Provider store={Store}>
+                <ThemeProvider theme={theme}>
+                    <SafeAreaProvider>
+                        <MyStack />
+                    </SafeAreaProvider>
+                </ThemeProvider>
+            </Provider>
         );
     }
 }

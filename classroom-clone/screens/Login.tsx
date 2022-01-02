@@ -3,6 +3,9 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import { View } from '../components/Themed';
+import { FetchLogin } from '../store/reducer/auth/action';
+import { useAppDispatch, useAppSelector } from '../store';
+import { authState } from '../store/selectors';
 
 const styles = StyleSheet.create({
     container: {
@@ -32,8 +35,18 @@ const styles = StyleSheet.create({
 });
 
 export default function Login({ navigation }: any) {
-    const [login, setLogin] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
+    const dispatch = useAppDispatch();
+
+    const token = useAppSelector(authState);
+
+    const handleLoginButton = () => {
+        FetchLogin(dispatch, { email, password });
+        if (token !== null) {
+            navigation.navigate('HomeLogged');
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -41,7 +54,7 @@ export default function Login({ navigation }: any) {
                 <Input
                     style={styles.input}
                     placeholder="Login"
-                    onChangeText={(value) => setLogin(value)}
+                    onChangeText={(value) => setEmail(value)}
                 />
 
                 <Input
@@ -56,7 +69,7 @@ export default function Login({ navigation }: any) {
                     title="Zaloguj"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
-                    onPress={() => navigation.navigate('MainPage')}
+                    onPress={() => handleLoginButton()}
                 />
             </View>
         </View>

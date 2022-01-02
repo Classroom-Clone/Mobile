@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
     class: {
@@ -27,12 +27,12 @@ export default function ClassContainer(props: any) {
     const { name, teacher, color } = props;
 
     return (
-        <View style={styles.class}>
+        <TouchableOpacity style={styles.class}>
             <View style={{ width: '40%', height: '100%', backgroundColor: color }} />
             <View style={{ height: '100%', width: '60%' }}>
                 <Text style={styles.nameText}>{name}</Text>
                 <Text style={styles.teacherText}>{teacher}</Text>
             </View>
-        </View>
+        </TouchableOpacity >
     );
 }

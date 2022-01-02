@@ -5,7 +5,10 @@ enum ActionsEnums {
 
     LOADING = 'Loading',
     SAVING = 'Saving',
-    PROCESSING = 'Processing'
+    PROCESSING = 'Processing',
+
+    GET_TOKEN = 'GET_TOKEN',
+    GET_CLASSROOM_LIST = 'GET_CLASSROOM_LIST'
 }
 
 export default ActionsEnums;
