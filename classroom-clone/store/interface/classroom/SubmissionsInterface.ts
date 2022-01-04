@@ -1,5 +1,5 @@
-import { PaginationInterface } from "../PaginationInterface";
-import { MemberInterface } from "./MemberInterface";
+import { PaginationInterface } from '../PaginationInterface';
+import { MemberInterface } from './MemberInterface';
 
 export interface SubmissionsListInterface {
     data: Array<SubmissionInterface>;
@@ -9,15 +9,15 @@ export interface SubmissionsListInterface {
 export interface SubmissionInterface {
     id: number;
     state: string;
-    created_at: string,
-    updated_at: string,
-    points: number,
-    user: MemberInterface,
-    attachments: Array<AttachmentInterface>
+    created_at: string;
+    updated_at: string;
+    points: number;
+    user: MemberInterface;
+    attachments: Array<AttachmentInterface>;
 }
 
 export interface AttachmentInterface {
-    id: number,
-    display_name: string,
-    url: string
+    id: number;
+    display_name: string;
+    url: string;
 }

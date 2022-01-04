@@ -1,4 +1,4 @@
-import { PaginationInterface } from "../PaginationInterface";
+import { PaginationInterface } from '../PaginationInterface';
 
 export interface PostListInterface {
     data: Array<PostInterface>;
@@ -9,24 +9,24 @@ export interface PostInterface {
     id: number;
     title: string;
     content: string;
-    created_at: string,
-    updated_at: string,
+    created_at: string;
+    updated_at: string;
     owner: {
-        id: number,
-        name: string,
-        email: string
-    },
-    links: Array<LinkInterface>,
-    attachments: Array<AttachmentInterface>
+        id: number;
+        name: string;
+        email: string;
+    };
+    links: Array<LinkInterface>;
+    attachments: Array<AttachmentInterface>;
 }
 
 export interface LinkInterface {
-    name: string,
-    url: string
+    name: string;
+    url: string;
 }
 
 export interface AttachmentInterface {
-    id: number,
-    display_name: string,
-    url: string
+    id: number;
+    display_name: string;
+    url: string;
 }

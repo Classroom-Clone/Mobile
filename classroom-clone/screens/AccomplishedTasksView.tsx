@@ -6,7 +6,11 @@ import { FlatList, View } from '../components/Themed';
 import { Text } from 'react-native-elements';
 import ClassViewElement from '../components/ClassViewElement';
 import { useAppDispatch, useAppSelector } from '../store';
-import { FetchClassroomList, FetchMembersList, FetchSubmissionsList } from '../store/reducer/classroom/action';
+import {
+    FetchClassroomList,
+    FetchMembersList,
+    FetchSubmissionsList
+} from '../store/reducer/classroom/action';
 import { authState, membersListState, submissionsListState } from '../store/selectors';
 import MemberComponent from '../components/MemberComponent';
 
@@ -30,7 +34,7 @@ const styles = StyleSheet.create({
 
 export default function AccomplishedTasksView({ navigation, route }: any) {
     const { id } = route?.params;
-    console.log(route)
+    console.log(route);
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
@@ -43,8 +47,10 @@ export default function AccomplishedTasksView({ navigation, route }: any) {
     console.log(submissions);
     return (
         <SafeAreaView style={styles.container}>
-            <ScrollView >
-                {submissions?.data.map(submission => <MemberComponent member={submission.user} />)}
+            <ScrollView>
+                {submissions?.data.map((submission) => (
+                    <MemberComponent member={submission.user} navigation={navigation} submission={submission} />
+                ))}
             </ScrollView>
         </SafeAreaView>
     );

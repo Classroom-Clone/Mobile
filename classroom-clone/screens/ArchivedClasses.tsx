@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     footer: {
-        marginBottom: '40px',
+        marginBottom: 40,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'

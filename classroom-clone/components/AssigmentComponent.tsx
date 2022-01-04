@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: '100px',
+        height: 100,
         flexWrap: 'wrap'
     },
     header: {
@@ -41,7 +41,7 @@ interface IDefaultProps {
 export default function AssigmentComponent(props: IDefaultProps) {
     const { assigment, navigation } = props;
 
-    console.log('assigment')
+    console.log('assigment');
     return (
         <View style={styles.class}>
             <View style={styles.header}>

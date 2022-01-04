@@ -20,6 +20,7 @@ import { View } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Entypo } from '@expo/vector-icons';
 import AccomplishedTasksView from '../screens/AccomplishedTasksView';
+import TaskEvaluatedView from '../screens/TaskEvaluatedView';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,9 +33,16 @@ interface IDefaultProps {
 function ClassHeader(props: IDefaultProps) {
     const { name, navigation } = props;
     return (
-        <View style={{ flex: 1, flexDirection: 'row', paddingTop: '20px' }}>
-            <Entypo name="home" size={24} color="black" onPress={() => navigation.navigate('HomeLogged')} />
-            <Text style={{ paddingLeft: '30px' }} h4>{name}</Text>
+        <View style={{ flex: 1, flexDirection: 'row', paddingTop: 20 }}>
+            <Entypo
+                name="home"
+                size={24}
+                color="black"
+                onPress={() => navigation.navigate('HomeLogged')}
+            />
+            <Text style={{ paddingLeft: 30 }} h4>
+                {name}
+            </Text>
         </View>
     );
 }
@@ -45,7 +53,9 @@ export function MyTabs({ route, navigation }: any) {
             <Tab.Screen
                 name="Klasa"
                 options={{
-                    tabBarIcon: () => <MaterialCommunityIcons name="home" size={24} color="black" />,
+                    tabBarIcon: () => (
+                        <MaterialCommunityIcons name="home" size={24} color="black" />
+                    ),
                     headerTitle: () => <ClassHeader navigation={navigation} name={'Klasa'} />
                 }}
                 initialParams={{ classe: route.params }}
@@ -53,7 +63,10 @@ export function MyTabs({ route, navigation }: any) {
             />
             <Tab.Screen
                 name="Zadania"
-                options={{ tabBarIcon: () => <FontAwesome name="book" size={24} color="black" />, headerTitle: () => <ClassHeader navigation={navigation} name={'Zadania'} /> }}
+                options={{
+                    tabBarIcon: () => <FontAwesome name="book" size={24} color="black" />,
+                    headerTitle: () => <ClassHeader navigation={navigation} name={'Zadania'} />
+                }}
                 initialParams={{ classe: route.params }}
                 component={ClassAssigmentsView}
             />
@@ -105,6 +118,11 @@ const MyStack = () => {
                     name="AcccomplishedTasks"
                     component={AccomplishedTasksView}
                     options={{ title: 'Oddane zadania' }}
+                />
+                <Stack.Screen
+                    name="TaskEvaluatedView"
+                    component={TaskEvaluatedView}
+                    options={{ title: 'Zadanie' }}
                 />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>

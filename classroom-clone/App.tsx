@@ -6,6 +6,7 @@ import { Store } from './store';
 import React from 'react';
 import ThemeProvider from 'react-native-elements/dist/config/ThemeProvider';
 import MyStack from './navigation/router';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -25,6 +26,7 @@ export default function App() {
                 <ThemeProvider theme={theme}>
                     <SafeAreaProvider>
                         <MyStack />
+                        <Toast />
                     </SafeAreaProvider>
                 </ThemeProvider>
             </Provider>

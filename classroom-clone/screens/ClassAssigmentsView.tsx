@@ -49,13 +49,13 @@ export default function ClassAssigmentsView({ navigation, route }: any) {
                     {name}
                 </Text>
             </View>
-            <ScrollView >
-                {assigments?.data.map(assigment =>
+            <ScrollView>
+                {assigments?.data.map((assigment) => (
                     <AssigmentComponent navigation={navigation} assigment={assigment} />
-                )}
+                ))}
             </ScrollView>
             <FAB
-                style={{ paddingTop: '10px' }}
+                style={{ paddingTop: 10 }}
                 icon={{ name: 'add', color: '#C0C0C0' }}
                 color="#3E3E3E"
                 placement="right"

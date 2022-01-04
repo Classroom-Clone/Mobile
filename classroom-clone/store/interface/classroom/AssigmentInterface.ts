@@ -1,4 +1,4 @@
-import { PaginationInterface } from "../PaginationInterface";
+import { PaginationInterface } from '../PaginationInterface';
 
 export interface AssigmentListInterface {
     data: Array<AssigmentInterface>;
@@ -10,19 +10,19 @@ export interface AssigmentInterface {
     title: string;
     content: string;
     due_date: string;
-    created_at: string,
-    updated_at: string,
-    points: number,
+    created_at: string;
+    updated_at: string;
+    points: number;
     owner: {
-        id: number,
-        name: string,
-        email: string
-    },
-    attachments: Array<AttachmentInterface>
+        id: number;
+        name: string;
+        email: string;
+    };
+    attachments: Array<AttachmentInterface>;
 }
 
 export interface AttachmentInterface {
-    id: number,
-    display_name: string,
-    url: string
+    id: number;
+    display_name: string;
+    url: string;
 }

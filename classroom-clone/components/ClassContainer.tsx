@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         backgroundColor: 'grey',
         margin: '10%',
-        height: '100px',
+        height: 100,
         flexWrap: 'wrap'
     },
     nameText: {

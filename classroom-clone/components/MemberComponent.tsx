@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import { MemberInterface } from '../store/interface/classroom/MemberInterface';
+import { SubmissionInterface } from '../store/interface/classroom/SubmissionsInterface';
 
 const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: '50px',
+        height: 50,
         flexWrap: 'wrap'
     },
     header: {
@@ -24,27 +25,56 @@ const styles = StyleSheet.create({
     nameText: {
         flexWrap: 'wrap',
         padding: '5%',
-        color: 'white',
-    },
+        color: 'white'
+    }
 });
 
 interface IDefaultProps {
     member: MemberInterface;
+    submission: SubmissionInterface | null;
+    navigation?: any;
 }
 
 export default function MemberComponent(prop: IDefaultProps) {
-    const { member } = prop;
+    const { member, submission, navigation } = prop;
+
+    console.log(submission)
     return (
         <View style={styles.class}>
             <View style={styles.header}>
-                <View
-                    style={{ width: '70%', height: '100%', display: 'flex', flexDirection: 'row' }}
-                >
-                    <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
-                        <Icon color="aquamarine" name="circle" />
+                {submission !== null ? (
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('TaskEvaluatedView', submission)}
+                    >
+                        <View
+                            style={{
+                                width: '70%',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'row'
+                            }}
+                        >
+                            <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
+                                <Icon color="aquamarine" name="circle" />
+                            </View>
+                            <Text style={styles.nameText}>{member.name}</Text>
+                        </View>
+                    </TouchableOpacity>
+                ) : (
+                    <View
+                        style={{
+                            width: '70%',
+                            height: '100%',
+                            display: 'flex',
+                            flexDirection: 'row'
+                        }}
+                    >
+                        <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
+                            <Icon color="aquamarine" name="circle" />
+                        </View>
+                        <Text style={styles.nameText}>{member.name}</Text>
                     </View>
-                    <Text style={styles.nameText}>{member.name}</Text>
-                </View>
+                )}
             </View>
         </View>
     );

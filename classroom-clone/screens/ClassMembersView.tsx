@@ -48,8 +48,10 @@ export default function ClassMembersView({ navigation, route }: any) {
                     {name}
                 </Text>
             </View>
-            <ScrollView >
-                {members?.data.map(member => <MemberComponent member={member} />)}
+            <ScrollView>
+                {members?.data.map((member) => (
+                    <MemberComponent member={member} submission={null} />
+                ))}
             </ScrollView>
         </SafeAreaView>
     );

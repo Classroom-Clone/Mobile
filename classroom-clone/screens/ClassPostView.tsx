@@ -37,7 +37,6 @@ export default function ClassPostView({ navigation, route }: any) {
     React.useEffect(() => {
         if (token !== null) FetchPostsList(dispatch, token.data, id);
     }, []);
-    console.log(posts);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -46,12 +45,13 @@ export default function ClassPostView({ navigation, route }: any) {
                     {name}
                 </Text>
             </View>
-            <ScrollView >
-                {posts?.data?.map(post => <ClassViewElement navigation={navigation} post={post} />
-                )}
+            <ScrollView>
+                {posts?.data?.map((post) => (
+                    <ClassViewElement navigation={navigation} post={post} />
+                ))}
             </ScrollView>
             <FAB
-                style={{ paddingTop: '10px' }}
+                style={{ paddingTop: 10 }}
                 icon={{ name: 'add', color: '#C0C0C0' }}
                 color="#3E3E3E"
                 placement="right"

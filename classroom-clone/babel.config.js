@@ -16,6 +16,6 @@ module.exports = function (api) {
                     verbose: false
                 }
             ]
-        ]
+        ],
     };
 };

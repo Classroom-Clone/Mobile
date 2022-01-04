@@ -12,13 +12,14 @@ export const SendGetRequest = async (url: string, token: string) =>
         .then((data) => {
             return data;
         })
-        .catch(() => {});
+        .catch(() => { });
 
-export const SendPostRequest = async (url: string, payload: any) =>
+export const SendPostRequest = async (url: string, token: string | null, payload: any) =>
     fetch(url, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer  ${token}`
         },
         body: JSON.stringify(payload)
     })
@@ -28,7 +29,7 @@ export const SendPostRequest = async (url: string, payload: any) =>
         .then((data) => {
             return data;
         })
-        .catch(() => {});
+        .catch(() => { });
 
 export const SendPostWithoutPayloadRequest = async (url: string) =>
     fetch(url, {
@@ -43,30 +44,46 @@ export const SendPostWithoutPayloadRequest = async (url: string) =>
         .then((data) => {
             return data;
         })
-        .catch(() => {});
+        .catch(() => { });
 
-export const SendPutRequest = async (url: string, payload: any) =>
+export const SendPutRequest = async (url: string, token: string, payload: any) =>
     fetch(url, {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer  ${token}`
+
         },
         body: JSON.stringify(payload)
     })
         .then((response) => {
             return response.status === 200 ? response.json() : '';
         })
-        .catch(() => {});
+        .catch(() => { });
 
-export const SendDeleteRequest = async (url: string) =>
+export const SendPutWithoutPayloadRequest = async (url: string, token: string,) =>
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer  ${token}`
+        },
+    })
+        .then((response) => {
+            return response.status === 200 ? response.json() : '';
+        })
+        .catch(() => { });
+
+export const SendDeleteRequest = async (url: string, token: string) =>
     fetch(url, {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            Authorization: `Bearer  ${token}`
         }
     })
         .then((response) => {
             return response.status === 200 ? response.json() : '';
         })
-        .then((data) => {})
-        .catch(() => {});
+        .then((data) => { })
+        .catch(() => { });

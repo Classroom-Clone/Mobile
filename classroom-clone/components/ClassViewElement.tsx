@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: '100px',
+        height: 100,
         flexWrap: 'wrap'
     },
     header: {
@@ -41,7 +41,7 @@ interface IDefaultProps {
 export default function ClassViewElement(props: IDefaultProps) {
     const { post, navigation } = props;
 
-    console.log(post)
+    console.log(post);
     return (
         <View style={styles.class}>
             <View style={styles.header}>
