@@ -1,4 +1,4 @@
-import { PaginationInterface } from "../PaginationInterface";
+import { PaginationInterface } from '../PaginationInterface';
 
 export interface ClassroomListInterface {
     data: Array<ClassroomInterface>;
@@ -6,13 +6,13 @@ export interface ClassroomListInterface {
 }
 
 export interface ClassroomInterface {
-    id: number,
-    name: string,
-    description: string,
-    color: string,
-    allow_join: boolean,
-    join_code: string,
-    is_archived: boolean,
-    created_at: string,
-    updated_at: string
+    id: number;
+    name: string;
+    description: string;
+    color: string;
+    allow_join: boolean;
+    join_code: string;
+    is_archived: boolean;
+    created_at: string;
+    updated_at: string;
 }

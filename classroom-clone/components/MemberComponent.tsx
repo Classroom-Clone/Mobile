@@ -3,14 +3,13 @@ import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import { PostInterface } from '../store/interface/classroom/PostInterface';
-import { AntDesign } from '@expo/vector-icons';
+import { MemberInterface } from '../store/interface/classroom/MemberInterface';
 
 const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: '100px',
+        height: '50px',
         flexWrap: 'wrap'
     },
     header: {
@@ -25,38 +24,27 @@ const styles = StyleSheet.create({
     nameText: {
         flexWrap: 'wrap',
         padding: '5%',
-        fontWeight: 'bold',
-        color: 'white'
+        color: 'white',
     },
-    redirectToDetails: {
-        textAlign: 'center',
-        alignItems: 'center'
-    }
 });
+
 interface IDefaultProps {
-    post: PostInterface;
-    navigation: any;
+    member: MemberInterface;
 }
 
-export default function ClassViewElement(props: IDefaultProps) {
-    const { post, navigation } = props;
-
-    console.log(post)
+export default function MemberComponent(prop: IDefaultProps) {
+    const { member } = prop;
     return (
         <View style={styles.class}>
             <View style={styles.header}>
                 <View
-                    style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'row' }}
+                    style={{ width: '70%', height: '100%', display: 'flex', flexDirection: 'row' }}
                 >
                     <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
-                        <Icon color="white" name="circle" />
-                        {/* <Icon color="white" name="details" /> */}
+                        <Icon color="aquamarine" name="circle" />
                     </View>
-                    <Text style={styles.nameText}>{post.title}</Text>
+                    <Text style={styles.nameText}>{member.name}</Text>
                 </View>
-            </View>
-            <View style={styles.redirectToDetails}>
-                <AntDesign name="arrowright" size={24} color="black" />
             </View>
         </View>
     );

@@ -46,7 +46,7 @@ export default function Login({ navigation }: any) {
         if (token !== null) {
             navigation.navigate('HomeLogged');
         }
-    }
+    };
 
     return (
         <View style={styles.container}>

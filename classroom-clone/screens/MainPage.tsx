@@ -20,8 +20,7 @@ export default function MainPage({ navigation }: any) {
     const classrooms = useAppSelector(classroomListState);
 
     React.useEffect(() => {
-        if (token !== null)
-            FetchClassroomList(dispatch, token.data)
+        if (token !== null) FetchClassroomList(dispatch, token.data);
     }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (
@@ -36,7 +35,7 @@ export default function MainPage({ navigation }: any) {
     return (
         <View style={styles.container}>
             <FlatList
-                data={classrooms?.data?.filter(c => !c.is_archived)}
+                data={classrooms?.data?.filter((c) => !c.is_archived)}
                 renderItem={renderClassContainer}
                 keyExtractor={(item) => item.id}
             />

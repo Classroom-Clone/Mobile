@@ -33,6 +33,6 @@ export default function ClassContainer(props: any) {
                 <Text style={styles.nameText}>{name}</Text>
                 <Text style={styles.teacherText}>{teacher}</Text>
             </View>
-        </TouchableOpacity >
+        </TouchableOpacity>
     );
 }

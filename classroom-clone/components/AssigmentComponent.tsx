@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import { PostInterface } from '../store/interface/classroom/PostInterface';
-import { AntDesign } from '@expo/vector-icons';
+import { AssigmentInterface } from '../store/interface/classroom/AssigmentInterface';
 
 const styles = StyleSheet.create({
     class: {
@@ -34,14 +34,14 @@ const styles = StyleSheet.create({
     }
 });
 interface IDefaultProps {
-    post: PostInterface;
+    assigment: AssigmentInterface;
     navigation: any;
 }
 
-export default function ClassViewElement(props: IDefaultProps) {
-    const { post, navigation } = props;
+export default function AssigmentComponent(props: IDefaultProps) {
+    const { assigment, navigation } = props;
 
-    console.log(post)
+    console.log('assigment')
     return (
         <View style={styles.class}>
             <View style={styles.header}>
@@ -49,15 +49,16 @@ export default function ClassViewElement(props: IDefaultProps) {
                     style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'row' }}
                 >
                     <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
-                        <Icon color="white" name="circle" />
-                        {/* <Icon color="white" name="details" /> */}
+                        <Icon color="white" name="details" />
                     </View>
-                    <Text style={styles.nameText}>{post.title}</Text>
+                    <Text style={styles.nameText}>{assigment.title}</Text>
                 </View>
             </View>
-            <View style={styles.redirectToDetails}>
-                <AntDesign name="arrowright" size={24} color="black" />
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('AcccomplishedTasks', assigment)}>
+                <View style={styles.redirectToDetails}>
+                    <AntDesign name="arrowright" size={24} color="black" />
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }

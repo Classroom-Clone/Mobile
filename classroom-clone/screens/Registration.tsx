@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Registration({ navigation }: any) {
+export default function Registration({ navigation, route }: any) {
     const [login, setLogin] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
@@ -69,7 +69,7 @@ export default function Registration({ navigation }: any) {
                     title="Zarejestruj"
                     style={styles.button}
                     buttonStyle={{ backgroundColor: 'grey' }}
-                    onPress={() => navigation.navigate('MainPage')}
+                    onPress={() => route.params.setState(11)}
                 />
             </View>
         </View>
