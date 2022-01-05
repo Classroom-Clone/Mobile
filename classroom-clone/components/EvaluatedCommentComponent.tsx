@@ -1,51 +1,59 @@
-import { Octicons } from '@expo/vector-icons';
 import * as React from 'react';
-import { Alert, Linking, PermissionsAndroid, Platform, StyleSheet, TouchableOpacity } from 'react-native';
-import { Icon, Input, Text } from 'react-native-elements';
-import { Button } from 'react-native-elements/dist/buttons/Button';
+import { StyleSheet } from 'react-native';
+import { Input } from 'react-native-elements';
+import Toast from 'react-native-toast-message';
 import { View } from '../components/Themed';
-import { useAppSelector } from '../store';
-import { AttachmentInterface } from '../store/interface/classroom/AssigmentInterface';
-import { MemberInterface } from '../store/interface/classroom/MemberInterface';
+import { useAppDispatch, useAppSelector } from '../store';
+import { FetchSubmissionCommentsList } from '../store/reducer/comment/action';
 import { authState } from '../store/selectors';
-import { PutReturnSubmission } from '../store/service/classroom/SubmissionService';
+import { PostCommentSubmission } from '../store/service/classroom/SubmissionService';
+import StyledButtonComponent from './StyledButtonComponent';
 
 const styles = StyleSheet.create({
     input: {
         marginVertical: 10,
         height: 200,
         color: 'white',
-        flexWrap: 'wrap',
-    },
+        flexWrap: 'wrap'
+    }
 });
 
-export default function EvaluatedCommentComponent() {
+interface IDefaultProps {
+    id: number;
+}
+
+export default function EvaluatedCommentComponent(props: IDefaultProps) {
     const [comment, setComment] = React.useState('');
+    const token = useAppSelector(authState);
+    const dispatch = useAppDispatch();
+
+    const handleCommentSubmission = () => {
+        if (token) {
+            PostCommentSubmission(token.data, props.id, { content: comment });
+            FetchSubmissionCommentsList(dispatch, token.data, props.id);
+            Toast.show({
+                type: 'success',
+                text1: 'Pomyślnie dodano komentarz'
+            });
+            setComment('');
+        }
+    };
 
     return (
         <View>
             <Input
                 multiline
                 style={styles.input}
-                placeholder='Dodaj prywatny komentarz'
+                placeholder="Dodaj prywatny komentarz"
                 onChangeText={(value) => setComment(value)}
             />
-            {comment.length > 0 &&
-                <Button
+            {comment.length > 0 && (
+                <StyledButtonComponent
+                    method={() => handleCommentSubmission()}
                     title="Dodaj komentarz"
-                    buttonStyle={{
-                        backgroundColor: 'grey',
-                        borderWidth: 2,
-                        borderRadius: 30,
-                    }}
-                    containerStyle={{
-                        width: 200,
-                        marginHorizontal: 50,
-                        marginVertical: 10,
-                    }}
-                    titleStyle={{ fontWeight: 'bold' }}
+                    width={200}
                 />
-            }
+            )}
         </View>
     );
 }

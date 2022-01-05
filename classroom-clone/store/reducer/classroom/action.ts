@@ -24,7 +24,6 @@ export async function FetchMembersList(dispatch: any, token: string, classId: nu
 
 export async function FetchPostsList(dispatch: any, token: string, classId: number) {
     const result = await GetPostsList(token, classId);
-    console.log(result);
 
     dispatch({
         payload: result,
@@ -34,7 +33,6 @@ export async function FetchPostsList(dispatch: any, token: string, classId: numb
 
 export async function FetchAssigmentsList(dispatch: any, token: string, classId: number) {
     const result = await GetAssigmentsList(token, classId);
-    console.log(result);
 
     dispatch({
         payload: result,
@@ -44,7 +42,6 @@ export async function FetchAssigmentsList(dispatch: any, token: string, classId:
 
 export async function FetchSubmissionsList(dispatch: any, token: string, assigmentId: number) {
     const result = await GetSubmissionsList(token, assigmentId);
-    console.log(result);
 
     dispatch({
         payload: result,

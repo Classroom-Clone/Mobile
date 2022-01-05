@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import { PostInterface } from '../store/interface/classroom/PostInterface';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -41,7 +40,6 @@ interface IDefaultProps {
 export default function ClassViewElement(props: IDefaultProps) {
     const { post, navigation } = props;
 
-    console.log(post);
     return (
         <View style={styles.class}>
             <View style={styles.header}>

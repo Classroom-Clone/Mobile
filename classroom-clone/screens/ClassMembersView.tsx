@@ -1,12 +1,9 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements/dist/buttons/Button';
-import { FlatList, View } from '../components/Themed';
+import { View } from '../components/Themed';
 import { Text } from 'react-native-elements';
-import ClassViewElement from '../components/ClassViewElement';
 import { useAppDispatch, useAppSelector } from '../store';
-import { FetchClassroomList, FetchMembersList } from '../store/reducer/classroom/action';
+import { FetchMembersList } from '../store/reducer/classroom/action';
 import { authState, membersListState } from '../store/selectors';
 import MemberComponent from '../components/MemberComponent';
 
@@ -40,7 +37,6 @@ export default function ClassMembersView({ navigation, route }: any) {
         if (token !== null) FetchMembersList(dispatch, token.data, id);
     }, []);
 
-    console.log(members);
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ width: '100%', height: '20%', backgroundColor: color }}>
@@ -50,7 +46,7 @@ export default function ClassMembersView({ navigation, route }: any) {
             </View>
             <ScrollView>
                 {members?.data.map((member) => (
-                    <MemberComponent member={member} submission={null} />
+                    <MemberComponent member={member} submission={null} key={member.id} />
                 ))}
             </ScrollView>
         </SafeAreaView>

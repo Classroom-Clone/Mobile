@@ -3,7 +3,6 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import { AssigmentInterface } from '../store/interface/classroom/AssigmentInterface';
 
 const styles = StyleSheet.create({
@@ -41,7 +40,6 @@ interface IDefaultProps {
 export default function AssigmentComponent(props: IDefaultProps) {
     const { assigment, navigation } = props;
 
-    console.log('assigment');
     return (
         <View style={styles.class}>
             <View style={styles.header}>

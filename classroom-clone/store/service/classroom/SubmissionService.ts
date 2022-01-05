@@ -1,4 +1,10 @@
-import { SendGetRequest, SendPutRequest, SendPutWithoutPayloadRequest } from '../AppService';
+import {
+    SendGetRequest,
+    SendPostRequest,
+    SendPutRequest,
+    SendPutWithoutPayloadRequest
+} from '../AppService';
+import { CommentModel } from './Models/CommentModel';
 import { EvaluateSubmissionModel } from './Models/EvaluateSubmissionModel';
 
 export const GetSubmissionsList = (token: string, assigmentId: number) =>
@@ -7,12 +13,11 @@ export const GetSubmissionsList = (token: string, assigmentId: number) =>
         token
     );
 
-export const PutEvaluateSubmission = (token: string, submissionId: number, points: EvaluateSubmissionModel) =>
-    SendPutRequest(
-        `http://51.83.134.23/api/submissions/${submissionId}/evaluate`,
-        token,
-        points
-    );
+export const PutEvaluateSubmission = (
+    token: string,
+    submissionId: number,
+    points: EvaluateSubmissionModel
+) => SendPutRequest(`http://51.83.134.23/api/submissions/${submissionId}/evaluate`, token, points);
 
 export const PutReturnSubmission = (token: string, submissionId: number) =>
     SendPutWithoutPayloadRequest(
@@ -20,3 +25,5 @@ export const PutReturnSubmission = (token: string, submissionId: number) =>
         token
     );
 
+export const PostCommentSubmission = (token: string, submissionId: number, points: CommentModel) =>
+    SendPostRequest(`http://51.83.134.23/api/submissions/${submissionId}/comments`, token, points);

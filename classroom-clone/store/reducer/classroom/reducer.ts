@@ -8,7 +8,7 @@ import { MembersListInterface } from '../../interface/classroom/MemberInterface'
 import { PostListInterface } from '../../interface/classroom/PostInterface';
 import { SubmissionsListInterface } from '../../interface/classroom/SubmissionsInterface';
 
-export type AuthType =
+export type ClassroomType =
     | IAction<ActionsEnums.GET_CLASSROOM_LIST, ClassroomListInterface>
     | IAction<ActionsEnums.GET_POSTS_LIST, PostListInterface>
     | IAction<ActionsEnums.GET_ASSIGMENTS_LIST, AssigmentListInterface>
@@ -16,7 +16,7 @@ export type AuthType =
     | IAction<ActionsEnums.GET_MEMBERS_LIST, MembersListInterface>;
 export default function reducerClassroom(
     state: ClassroomState = classroomInitialState,
-    action: AuthType
+    action: ClassroomType
 ): ClassroomState {
     switch (action.type) {
         case ActionsEnums.GET_CLASSROOM_LIST:

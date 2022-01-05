@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import { Button } from 'react-native-elements/dist/buttons/Button';
-import { FlatList, View } from '../components/Themed';
+import { View } from '../components/Themed';
 import { FAB, Text } from 'react-native-elements';
 import ClassViewElement from '../components/ClassViewElement';
 import { useAppDispatch, useAppSelector } from '../store';
@@ -47,7 +45,7 @@ export default function ClassPostView({ navigation, route }: any) {
             </View>
             <ScrollView>
                 {posts?.data?.map((post) => (
-                    <ClassViewElement navigation={navigation} post={post} />
+                    <ClassViewElement navigation={navigation} post={post} key={post.id} />
                 ))}
             </ScrollView>
             <FAB

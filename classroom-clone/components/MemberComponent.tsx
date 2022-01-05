@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import { MemberInterface } from '../store/interface/classroom/MemberInterface';
 import { SubmissionInterface } from '../store/interface/classroom/SubmissionsInterface';
 
@@ -23,7 +22,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 2
     },
     nameText: {
-        flexWrap: 'wrap',
         padding: '5%',
         color: 'white'
     }
@@ -38,7 +36,6 @@ interface IDefaultProps {
 export default function MemberComponent(prop: IDefaultProps) {
     const { member, submission, navigation } = prop;
 
-    console.log(submission)
     return (
         <View style={styles.class}>
             <View style={styles.header}>
@@ -48,7 +45,7 @@ export default function MemberComponent(prop: IDefaultProps) {
                     >
                         <View
                             style={{
-                                width: '70%',
+                                width: '90%',
                                 height: '100%',
                                 display: 'flex',
                                 flexDirection: 'row'

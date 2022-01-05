@@ -31,9 +31,6 @@ export default function MainPage({ navigation }: any) {
         </TouchableOpacity>
     );
 
-    const test = ({ item }: { item: any }) => (
-        <ClassContainer name={item.name} color={item.color} />
-    );
     return (
         <View style={styles.container}>
             <FlatList

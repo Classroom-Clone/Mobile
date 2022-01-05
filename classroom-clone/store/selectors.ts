@@ -6,3 +6,5 @@ export const membersListState = (state: RootState) => state.classroom.membersSta
 export const postsListState = (state: RootState) => state.classroom.postState;
 export const assigmentsListState = (state: RootState) => state.classroom.assigmentState;
 export const submissionsListState = (state: RootState) => state.classroom.submissionState;
+export const submissionCommentsListState = (state: RootState) =>
+    state.comment.submissionCommentState;
