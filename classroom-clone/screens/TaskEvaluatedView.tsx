@@ -8,7 +8,7 @@ import EvaluatedCommentComponent from '../components/EvaluatedCommentComponent';
 import StyledButtonComponent from '../components/StyledButtonComponent';
 import { View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from '../store';
-import { AttachmentInterface } from '../store/interface/classroom/AssigmentInterface';
+import { AttachmentInterface } from '../store/interface/classroom/AssignmentInterface';
 import { FetchSubmissionCommentsList } from '../store/reducer/comment/action';
 import { authState, submissionCommentsListState } from '../store/selectors';
 import {

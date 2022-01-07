@@ -6,24 +6,19 @@ import {
 } from '../AppService';
 import { CommentModel } from './Models/CommentModel';
 import { EvaluateSubmissionModel } from './Models/EvaluateSubmissionModel';
+import { API_URL } from '@env';
 
-export const GetSubmissionsList = (token: string, assigmentId: number) =>
-    SendGetRequest(
-        `http://51.83.134.23/api/assignments/${assigmentId}/submissions?perPage=100&page=1`,
-        token
-    );
+export const GetSubmissionsList = (token: string, assignmentId: number) =>
+    SendGetRequest(`${API_URL}/assignments/${assignmentId}/submissions?perPage=100&page=1`, token);
 
 export const PutEvaluateSubmission = (
     token: string,
     submissionId: number,
     points: EvaluateSubmissionModel
-) => SendPutRequest(`http://51.83.134.23/api/submissions/${submissionId}/evaluate`, token, points);
+) => SendPutRequest(`${API_URL}/submissions/${submissionId}/evaluate`, token, points);
 
 export const PutReturnSubmission = (token: string, submissionId: number) =>
-    SendPutWithoutPayloadRequest(
-        `http://51.83.134.23/api/submissions/${submissionId}/return`,
-        token
-    );
+    SendPutWithoutPayloadRequest(`${API_URL}/submissions/${submissionId}/return`, token);
 
 export const PostCommentSubmission = (token: string, submissionId: number, points: CommentModel) =>
-    SendPostRequest(`http://51.83.134.23/api/submissions/${submissionId}/comments`, token, points);
+    SendPostRequest(`${API_URL}/submissions/${submissionId}/comments`, token, points);

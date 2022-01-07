@@ -1,7 +1,9 @@
 import { SendGetRequest } from '../AppService';
+import { API_URL } from '@env';
+
+function prepareUrl(classId: number) {
+    return `${API_URL}/classrooms/${classId}/members?perPage=100&page=1`;
+}
 
 export const GetMembersList = (token: string, classId: number) =>
-    SendGetRequest(
-        `http://51.83.134.23/api/classrooms/${classId}/members?perPage=100&page=1`,
-        token
-    );
+    SendGetRequest(prepareUrl(classId), token);

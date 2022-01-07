@@ -1,5 +1,5 @@
 import ActionsEnums from '../../../helpers/enums/ActionEnums';
-import { GetAssigmentsList } from '../../service/classroom/AssigmentService';
+import { GetAssignmentsList } from '../../service/classroom/AssignmentService';
 import { GetClassroomList } from '../../service/classroom/ClassroomService';
 import { GetMembersList } from '../../service/classroom/MemberService';
 import { GetPostsList } from '../../service/classroom/PostService';
@@ -31,17 +31,17 @@ export async function FetchPostsList(dispatch: any, token: string, classId: numb
     });
 }
 
-export async function FetchAssigmentsList(dispatch: any, token: string, classId: number) {
-    const result = await GetAssigmentsList(token, classId);
+export async function FetchAssignmentsList(dispatch: any, token: string, classId: number) {
+    const result = await GetAssignmentsList(token, classId);
 
     dispatch({
         payload: result,
-        type: ActionsEnums.GET_ASSIGMENTS_LIST
+        type: ActionsEnums.GET_ASSIGNMENTS_LIST
     });
 }
 
-export async function FetchSubmissionsList(dispatch: any, token: string, assigmentId: number) {
-    const result = await GetSubmissionsList(token, assigmentId);
+export async function FetchSubmissionsList(dispatch: any, token: string, assignmentId: number) {
+    const result = await GetSubmissionsList(token, assignmentId);
 
     dispatch({
         payload: result,

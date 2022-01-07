@@ -4,7 +4,7 @@ const classroomInitialState: ClassroomState = {
     listState: null,
     membersState: null,
     postState: null,
-    assigmentState: null,
+    assignmentState: null,
     submissionState: null
 };
 

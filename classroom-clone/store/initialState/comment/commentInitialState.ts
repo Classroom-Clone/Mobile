@@ -2,7 +2,7 @@ import { CommentState } from '../../interface/comment';
 
 const commentInitialState: CommentState = {
     postCommentState: null,
-    assigmentCommentState: null,
+    assignmentCommentState: null,
     submissionCommentState: null
 };
 

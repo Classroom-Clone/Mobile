@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Linking, StyleSheet, TouchableOpacity } from 'react-native';
 import { Icon, Text } from 'react-native-elements';
 import { View } from '../components/Themed';
-import { AttachmentInterface } from '../store/interface/classroom/AssigmentInterface';
+import { AttachmentInterface } from '../store/interface/classroom/AssignmentInterface';
 import { MemberInterface } from '../store/interface/classroom/MemberInterface';
 
 const styles = StyleSheet.create({
