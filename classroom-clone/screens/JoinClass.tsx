@@ -6,6 +6,8 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import ErrorModal from '../components/ErrorModal';
 import { getResponseJson } from '../helpers/functions/GetResponseJson';
 import { API_URL } from '@env';
+import { useAppSelector } from '../store';
+import { authState } from '../store/selectors';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,6 +40,8 @@ export default function JoinClass({ navigation }: any) {
     const [joinCode, setJoinCode] = useState('');
     const [errorVisible, setErrorVisible] = useState(false);
 
+    const token = useAppSelector(authState);
+
     const redirectToClassroom = () => {
         navigation.navigate('MainPage');
     };
@@ -47,15 +51,14 @@ export default function JoinClass({ navigation }: any) {
     };
 
     const joinToClass = async () => {
-        const URL = API_URL + 'me/classrooms/join';
-        const USER_TOKEN = 'token';
+        const url = API_URL + '/me/classrooms/join';
 
-        await fetch(URL, {
+        await fetch(url, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + USER_TOKEN
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 join_code: joinCode

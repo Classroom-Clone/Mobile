@@ -1,19 +1,19 @@
 import ActionsEnums from '../../../helpers/enums/ActionEnums';
 import {
-    GetAssigmentCommentsList,
+    GetAssignmentCommentsList,
     GetPostCommentsList,
     GetSubmissionCommentsList
 } from '../../service/comment/CommentService';
 
-export async function FetchAssigmentCommentsList(
+export async function FetchAssignmentCommentsList(
     dispatch: any,
     token: string,
-    assigmentId: number
+    assignmentId: number
 ) {
-    const result = await GetAssigmentCommentsList(token, assigmentId);
+    const result = await GetAssignmentCommentsList(token, assignmentId);
     dispatch({
         payload: result,
-        type: ActionsEnums.GET_ASSIGMENTS_COMMENTS_LIST
+        type: ActionsEnums.GET_ASSIGNMENTS_COMMENTS_LIST
     });
 }
 

@@ -1,4 +1,6 @@
 import { SendGetRequest } from '../AppService';
+import { API_URL } from '@env';
 
-export const GetClassroomList = (token: string) =>
-    SendGetRequest('http://51.83.134.23/api/me/classrooms', token);
+const url = `${API_URL}/me/classrooms`;
+
+export const GetClassroomList = (token: string) => SendGetRequest(url, token);

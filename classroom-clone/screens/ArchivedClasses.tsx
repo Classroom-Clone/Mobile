@@ -46,21 +46,16 @@ export default function ArchivedClasses({ navigation }: any) {
     const dispatch = useAppDispatch();
     const classrooms = useAppSelector(classroomListState);
 
-    React.useEffect(() => {
-        if (token !== null) FetchClassroomList(dispatch, token.data);
-    }, []);
-
     const getArchivedClasses = async () => {
         try {
-            const URL = API_URL + 'me/classrooms?perPage=' + perPage;
-            const USER_TOKEN = 'token';
+            const url = API_URL + '/me/classrooms?perPage=' + perPage;
 
-            const response = await fetch(URL, {
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + USER_TOKEN
+                    Authorization: `Bearer ${token}`
                 }
             });
             const json = await response.json();
@@ -73,6 +68,13 @@ export default function ArchivedClasses({ navigation }: any) {
             setLoading(false);
         }
     };
+
+    React.useEffect(() => {
+        if (token !== null) {
+            FetchClassroomList(dispatch, token.data);
+            getArchivedClasses().finally();
+        }
+    }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (
         <TouchableOpacity onPress={() => navigation.navigate('ClassView', item)}>
@@ -99,10 +101,6 @@ export default function ArchivedClasses({ navigation }: any) {
             );
         }
     };
-
-    useEffect(() => {
-        getArchivedClasses().finally();
-    }, []);
 
     return (
         <View style={styles.container}>

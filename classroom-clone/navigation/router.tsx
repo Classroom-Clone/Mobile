@@ -14,7 +14,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import ClassAssigmentsView from '../screens/ClassAssigmentsView';
+import ClassAssignmentsView from '../screens/ClassAssignmentsView';
 import ClassMembersView from '../screens/ClassMembersView';
 import { View } from 'react-native';
 import { Text } from 'react-native-elements';
@@ -68,7 +68,7 @@ export function MyTabs({ route, navigation }: any) {
                     headerTitle: () => <ClassHeader navigation={navigation} name={'Zadania'} />
                 }}
                 initialParams={{ classe: route.params }}
-                component={ClassAssigmentsView}
+                component={ClassAssignmentsView}
             />
             <Tab.Screen
                 name="Osoby"

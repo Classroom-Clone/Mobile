@@ -2,10 +2,10 @@ import * as React from 'react';
 import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { View } from '../components/Themed';
 import { FAB, Text } from 'react-native-elements';
-import AssigmentComponent from '../components/AssigmentComponent';
+import AssignmentComponent from '../components/AssignmentComponent';
 import { useAppDispatch, useAppSelector } from '../store';
-import { assigmentsListState, authState } from '../store/selectors';
-import { FetchAssigmentsList } from '../store/reducer/classroom/action';
+import { assignmentsListState, authState } from '../store/selectors';
+import { FetchAssignmentsList } from '../store/reducer/classroom/action';
 
 const styles = StyleSheet.create({
     container: {
@@ -25,15 +25,15 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function ClassAssigmentsView({ navigation, route }: any) {
+export default function ClassAssignmentsView({ navigation, route }: any) {
     const { color, name, id } = route?.params.classe;
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const assigments = useAppSelector(assigmentsListState);
+    const assignments = useAppSelector(assignmentsListState);
 
     React.useEffect(() => {
-        if (token !== null) FetchAssigmentsList(dispatch, token.data, id);
+        if (token !== null) FetchAssignmentsList(dispatch, token.data, id);
     }, []);
 
     return (
@@ -44,11 +44,11 @@ export default function ClassAssigmentsView({ navigation, route }: any) {
                 </Text>
             </View>
             <ScrollView>
-                {assigments?.data.map((assigment) => (
-                    <AssigmentComponent
+                {assignments?.data.map((assignment) => (
+                    <AssignmentComponent
                         navigation={navigation}
-                        assigment={assigment}
-                        key={assigment.id}
+                        assignment={assignment}
+                        key={assignment.id}
                     />
                 ))}
             </ScrollView>

@@ -1,11 +1,11 @@
 import { PaginationInterface } from '../PaginationInterface';
 
-export interface AssigmentListInterface {
-    data: Array<AssigmentInterface>;
+export interface AssignmentListInterface {
+    data: Array<AssignmentInterface>;
     pagination: PaginationInterface;
 }
 
-export interface AssigmentInterface {
+export interface AssignmentInterface {
     id: number;
     title: string;
     content: string;

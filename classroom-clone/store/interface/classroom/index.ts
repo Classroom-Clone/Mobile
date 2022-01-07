@@ -1,4 +1,4 @@
-import { AssigmentListInterface } from './AssigmentInterface';
+import { AssignmentListInterface } from './AssignmentInterface';
 import { ClassroomListInterface } from './ClassroomInterface';
 import { MembersListInterface } from './MemberInterface';
 import { PostListInterface } from './PostInterface';
@@ -8,6 +8,6 @@ export interface ClassroomState {
     listState: ClassroomListInterface | null;
     membersState: MembersListInterface | null;
     postState: PostListInterface | null;
-    assigmentState: AssigmentListInterface | null;
+    assignmentState: AssignmentListInterface | null;
     submissionState: SubmissionsListInterface | null;
 }

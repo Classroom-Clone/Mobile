@@ -3,7 +3,7 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
-import { AssigmentInterface } from '../store/interface/classroom/AssigmentInterface';
+import { AssignmentInterface } from '../store/interface/classroom/AssignmentInterface';
 
 const styles = StyleSheet.create({
     class: {
@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
     }
 });
 interface IDefaultProps {
-    assigment: AssigmentInterface;
+    assignment: AssignmentInterface;
     navigation: any;
 }
 
-export default function AssigmentComponent(props: IDefaultProps) {
-    const { assigment, navigation } = props;
+export default function AssignmentComponent(props: IDefaultProps) {
+    const { assignment, navigation } = props;
 
     return (
         <View style={styles.class}>
@@ -49,10 +49,10 @@ export default function AssigmentComponent(props: IDefaultProps) {
                     <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
                         <Icon color="white" name="details" />
                     </View>
-                    <Text style={styles.nameText}>{assigment.title}</Text>
+                    <Text style={styles.nameText}>{assignment.title}</Text>
                 </View>
             </View>
-            <TouchableOpacity onPress={() => navigation.navigate('AcccomplishedTasks', assigment)}>
+            <TouchableOpacity onPress={() => navigation.navigate('AcccomplishedTasks', assignment)}>
                 <View style={styles.redirectToDetails}>
                     <AntDesign name="arrowright" size={24} color="black" />
                 </View>
