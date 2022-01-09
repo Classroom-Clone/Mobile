@@ -10,6 +10,7 @@ import { SubmissionsListInterface } from '../../interface/classroom/SubmissionsI
 
 export type ClassroomType =
     | IAction<ActionsEnums.GET_CLASSROOM_LIST, ClassroomListInterface>
+    | IAction<ActionsEnums.GET_OWNED_CLASSROOM_LIST, ClassroomListInterface>
     | IAction<ActionsEnums.GET_POSTS_LIST, PostListInterface>
     | IAction<ActionsEnums.GET_ASSIGNMENTS_LIST, AssignmentListInterface>
     | IAction<ActionsEnums.GET_SUBMISSIONS_LIST, SubmissionsListInterface>
@@ -21,6 +22,8 @@ export default function reducerClassroom(
     switch (action.type) {
         case ActionsEnums.GET_CLASSROOM_LIST:
             return { ...state, listState: action.payload };
+        case ActionsEnums.GET_OWNED_CLASSROOM_LIST:
+            return { ...state, ownedClassroomsState: action.payload };
         case ActionsEnums.GET_MEMBERS_LIST:
             return { ...state, membersState: action.payload };
         case ActionsEnums.GET_POSTS_LIST:

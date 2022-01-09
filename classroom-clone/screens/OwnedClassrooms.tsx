@@ -3,8 +3,8 @@ import { StyleSheet } from 'react-native';
 import { FlatList, View } from '../components/Themed';
 import ClassContainer from '../components/ClassContainer';
 import { useAppDispatch, useAppSelector } from '../store';
-import { authState, classroomListState } from '../store/selectors';
-import { FetchClassroomList } from '../store/reducer/classroom/action';
+import { authState, ownedClassroomListState } from '../store/selectors';
+import { FetchOwnedClassroomList } from '../store/reducer/classroom/action';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SpeedDial } from 'react-native-elements';
 
@@ -14,20 +14,19 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function MainPage({ navigation }: any) {
+export default function OwnedClassrooms({ navigation }: any) {
     const token = useAppSelector(authState);
-
     const dispatch = useAppDispatch();
-    const classrooms = useAppSelector(classroomListState);
+    const classrooms = useAppSelector(ownedClassroomListState);
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
-        if (token !== null) FetchClassroomList(dispatch, token.data);
+        if (token !== null) FetchOwnedClassroomList(dispatch, token.data);
     }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (
         <TouchableOpacity
-            onPress={() => navigation.navigate('ClassView', { item: item, isOwner: false })}
+            onPress={() => navigation.navigate('ClassView', { item: item, isOwner: true })}
         >
             <ClassContainer name={item.name} color={item.color} />
         </TouchableOpacity>
@@ -55,7 +54,7 @@ export default function MainPage({ navigation }: any) {
                 <SpeedDial.Action
                     icon={{ name: 'add', color: '#fff' }}
                     title="Utwórz klasę"
-                    onPress={() => console.log()} //todo
+                    onPress={() => navigation.navigate('AddComment')}
                 />
             </SpeedDial>
         </View>

@@ -1,9 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import { PostInterface } from '../store/interface/classroom/PostInterface';
 import { AntDesign } from '@expo/vector-icons';
+import { useAppDispatch, useAppSelector } from '../store';
+import { authState } from '../store/selectors';
+import { FetchPostCommentsList } from '../store/reducer/comment/action';
 
 const styles = StyleSheet.create({
     class: {
@@ -19,7 +22,8 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         backgroundColor: 'grey',
         borderBottomColor: 'white',
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
+        height: 80
     },
     nameText: {
         flexWrap: 'wrap',
@@ -28,6 +32,7 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     redirectToDetails: {
+        height: 20,
         textAlign: 'center',
         alignItems: 'center'
     }
@@ -39,23 +44,33 @@ interface IDefaultProps {
 
 export default function ClassViewElement(props: IDefaultProps) {
     const { post, navigation } = props;
+    const dispatch = useAppDispatch();
+    const token = useAppSelector(authState);
+
+    const handlePress = () => {
+        if (token) {
+            FetchPostCommentsList(dispatch, token.data, post.id);
+            navigation.navigate('AddComment', { id: post.id, type: 'post' });
+        }
+    };
 
     return (
         <View style={styles.class}>
-            <View style={styles.header}>
-                <View
-                    style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'row' }}
-                >
-                    <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
-                        <Icon color="white" name="circle" />
-                        {/* <Icon color="white" name="details" /> */}
+            <TouchableOpacity onPress={() => navigation.navigate('PostDetails', { post: post })}>
+                <View style={styles.header}>
+                    <View style={{ width: 90, display: 'flex', flexDirection: 'row' }}>
+                        <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
+                            <Icon color="white" name="circle" />
+                        </View>
+                        <Text style={styles.nameText}>{post.title}</Text>
                     </View>
-                    <Text style={styles.nameText}>{post.title}</Text>
                 </View>
-            </View>
-            <View style={styles.redirectToDetails}>
-                <AntDesign name="arrowright" size={24} color="black" />
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handlePress()}>
+                <View style={styles.redirectToDetails}>
+                    <AntDesign name="arrowright" size={24} color="black" />
+                </View>
+            </TouchableOpacity>
         </View>
     );
 }

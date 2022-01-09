@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements/dist/buttons/Button';
@@ -59,9 +59,8 @@ export default function ArchivedClasses({ navigation }: any) {
                 }
             });
             const json = await response.json();
-
             setData(json.data);
-            setTotalResults(json.pagination.total);
+            setTotalResults(json.pagination?.total);
         } catch (error) {
             console.error(error);
         } finally {

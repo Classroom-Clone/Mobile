@@ -53,6 +53,7 @@ export default function ClassPostView({ navigation, route }: any) {
                 icon={{ name: 'add', color: '#C0C0C0' }}
                 color="#3E3E3E"
                 placement="right"
+                onPress={() => navigation.navigate('CreatePost', { id: id })}
             />
         </SafeAreaView>
     );

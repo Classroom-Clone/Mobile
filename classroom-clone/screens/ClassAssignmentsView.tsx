@@ -26,21 +26,21 @@ const styles = StyleSheet.create({
 });
 
 export default function ClassAssignmentsView({ navigation, route }: any) {
-    const { color, name, id } = route?.params.classe;
+    const { classe, isOwner } = route?.params;
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
     const assignments = useAppSelector(assignmentsListState);
 
     React.useEffect(() => {
-        if (token !== null) FetchAssignmentsList(dispatch, token.data, id);
+        if (token !== null) FetchAssignmentsList(dispatch, token.data, classe.id);
     }, []);
 
     return (
         <SafeAreaView style={styles.container}>
-            <View style={{ width: '100%', height: '20%', backgroundColor: color }}>
+            <View style={{ width: '100%', height: '20%', backgroundColor: classe.color }}>
                 <Text h4 style={styles.lessonText}>
-                    {name}
+                    {classe.name}
                 </Text>
             </View>
             <ScrollView>
@@ -49,6 +49,7 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
                         navigation={navigation}
                         assignment={assignment}
                         key={assignment.id}
+                        isOwner={isOwner}
                     />
                 ))}
             </ScrollView>

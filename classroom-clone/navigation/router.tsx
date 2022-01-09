@@ -21,6 +21,10 @@ import { Text } from 'react-native-elements';
 import { Entypo } from '@expo/vector-icons';
 import AccomplishedTasksView from '../screens/AccomplishedTasksView';
 import TaskEvaluatedView from '../screens/TaskEvaluatedView';
+import CreatePostView from '../screens/CreatePostView';
+import AddCommentView from '../screens/CommentsView';
+import PostDetailsView from '../screens/PostDetailsView';
+import AssignmentDetailsView from '../screens/AssignmentDetailsView';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -58,7 +62,7 @@ export function MyTabs({ route, navigation }: any) {
                     ),
                     headerTitle: () => <ClassHeader navigation={navigation} name={'Klasa'} />
                 }}
-                initialParams={{ classe: route.params }}
+                initialParams={{ classe: route.params.item, isOwner: route.params.isOwner }}
                 component={ClassPostView}
             />
             <Tab.Screen
@@ -67,7 +71,7 @@ export function MyTabs({ route, navigation }: any) {
                     tabBarIcon: () => <FontAwesome name="book" size={24} color="black" />,
                     headerTitle: () => <ClassHeader navigation={navigation} name={'Zadania'} />
                 }}
-                initialParams={{ classe: route.params }}
+                initialParams={{ classe: route.params.item, isOwner: route.params.isOwner }}
                 component={ClassAssignmentsView}
             />
             <Tab.Screen
@@ -76,7 +80,7 @@ export function MyTabs({ route, navigation }: any) {
                     tabBarIcon: () => <Ionicons name="ios-people-sharp" size={24} color="black" />,
                     headerTitle: () => <ClassHeader navigation={navigation} name={'Osoby'} />
                 }}
-                initialParams={{ classe: route.params }}
+                initialParams={{ classe: route.params.item, isOwner: route.params.isOwner }}
                 component={ClassMembersView}
             />
         </Tab.Navigator>
@@ -123,6 +127,26 @@ const MyStack = () => {
                     name="TaskEvaluatedView"
                     component={TaskEvaluatedView}
                     options={{ title: 'Zadanie' }}
+                />
+                <Stack.Screen
+                    name="CreatePost"
+                    component={CreatePostView}
+                    options={{ title: 'Dodaj ogłoszenie' }}
+                />
+                <Stack.Screen
+                    name="AddComment"
+                    component={AddCommentView}
+                    options={{ title: 'Dodaj komentarz' }}
+                />
+                <Stack.Screen
+                    name="PostDetails"
+                    component={PostDetailsView}
+                    options={{ title: 'Ogłoszenie' }}
+                />
+                <Stack.Screen
+                    name="AssignmentDetails"
+                    component={AssignmentDetailsView}
+                    options={{ title: 'Szczegóły zadania' }}
                 />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>

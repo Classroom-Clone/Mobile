@@ -1,8 +1,9 @@
 import ActionsEnums from '../../../helpers/enums/ActionEnums';
 import { GetAssignmentsList } from '../../service/classroom/AssignmentService';
-import { GetClassroomList } from '../../service/classroom/ClassroomService';
+import { GetClassroomList, GetOwnedClassroomList } from '../../service/classroom/ClassroomService';
 import { GetMembersList } from '../../service/classroom/MemberService';
-import { GetPostsList } from '../../service/classroom/PostService';
+import { PostModel } from '../../service/classroom/Models/PostModel';
+import { GetPostsList, SendPost } from '../../service/classroom/PostService';
 import { GetSubmissionsList } from '../../service/classroom/SubmissionService';
 
 export async function FetchClassroomList(dispatch: any, token: string) {
@@ -47,4 +48,22 @@ export async function FetchSubmissionsList(dispatch: any, token: string, assignm
         payload: result,
         type: ActionsEnums.GET_SUBMISSIONS_LIST
     });
+}
+
+export async function FetchOwnedClassroomList(dispatch: any, token: string) {
+    const result = await GetOwnedClassroomList(token);
+    dispatch({
+        payload: result,
+        type: ActionsEnums.GET_OWNED_CLASSROOM_LIST
+    });
+}
+
+export async function CreatePost(
+    dispatch: any,
+    token: string,
+    classId: number,
+    payload: PostModel
+) {
+    await SendPost(token, classId, payload);
+    await FetchPostsList(dispatch, token, classId);
 }

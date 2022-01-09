@@ -8,6 +8,7 @@ import MainPage from '../screens/MainPage';
 import { authState } from '../store/selectors';
 import { useAppSelector } from '../store';
 import { MyTabs } from './router';
+import OwnedClassrooms from '../screens/OwnedClassRooms';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +23,11 @@ const MyDrawer = () => {
                         name="HomeLogged"
                         component={MainPage}
                         options={{ title: 'Strona Główna' }}
+                    />
+                    <Drawer.Screen
+                        name="OwnedClassrooms"
+                        component={OwnedClassrooms}
+                        options={{ title: 'Własne klasy' }}
                     />
                     <Drawer.Screen
                         name="ArchivedClasses"
