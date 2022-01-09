@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ActivityIndicator, StyleSheet } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import { View, FlatList } from '../components/Themed';
 import ClassContainer from '../components/ClassContainer';
 import { API_URL } from '@env';
+import { useAppDispatch, useAppSelector } from '../store';
+import { authState, classroomListState } from '../store/selectors';
+import { FetchClassroomList } from '../store/reducer/classroom/action';
 
 const styles = StyleSheet.create({
     container: {
@@ -15,7 +19,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     footer: {
-        marginBottom: '40px',
+        marginBottom: 40,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row'
@@ -31,29 +35,32 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function ArchivedClasses() {
+export default function ArchivedClasses({ navigation }: any) {
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [totalResults, setTotalResults] = useState(0);
     const [perPage, setPerPage] = useState(15);
 
+    const token = useAppSelector(authState);
+
+    const dispatch = useAppDispatch();
+    const classrooms = useAppSelector(classroomListState);
+
     const getArchivedClasses = async () => {
         try {
-            const URL = API_URL + 'me/classrooms?perPage=' + perPage;
-            const USER_TOKEN = 'token';
+            const url = API_URL + '/me/classrooms?perPage=' + perPage;
 
-            const response = await fetch(URL, {
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    Authorization: 'Bearer ' + USER_TOKEN
+                    Authorization: `Bearer ${token}`
                 }
             });
             const json = await response.json();
-
             setData(json.data);
-            setTotalResults(json.pagination.total);
+            setTotalResults(json.pagination?.total);
         } catch (error) {
             console.error(error);
         } finally {
@@ -61,8 +68,17 @@ export default function ArchivedClasses() {
         }
     };
 
+    React.useEffect(() => {
+        if (token !== null) {
+            FetchClassroomList(dispatch, token.data);
+            getArchivedClasses().finally();
+        }
+    }, []);
+
     const renderClassContainer = ({ item }: { item: any }) => (
-        <ClassContainer name={item.name} color={item.color} />
+        <TouchableOpacity onPress={() => navigation.navigate('ClassView', item)}>
+            <ClassContainer name={item.name} color={item.color} />
+        </TouchableOpacity>
     );
 
     const renderButton = () => {
@@ -85,17 +101,13 @@ export default function ArchivedClasses() {
         }
     };
 
-    useEffect(() => {
-        getArchivedClasses().finally();
-    }, []);
-
     return (
         <View style={styles.container}>
             {isLoading ? (
                 <ActivityIndicator style={styles.indicator} size="large" />
             ) : (
                 <FlatList
-                    data={data}
+                    data={classrooms?.data?.filter((c) => c.is_archived)}
                     renderItem={renderClassContainer}
                     keyExtractor={(item) => item.id}
                     ListFooterComponent={renderButton()}

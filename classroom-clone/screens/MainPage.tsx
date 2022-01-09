@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { View } from '../components/Themed';
+import { FlatList, View } from '../components/Themed';
 import ClassContainer from '../components/ClassContainer';
+import { useAppDispatch, useAppSelector } from '../store';
+import { authState, classroomListState } from '../store/selectors';
+import { FetchClassroomList } from '../store/reducer/classroom/action';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SpeedDial } from 'react-native-elements';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,10 +14,50 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function MainPage() {
+export default function MainPage({ navigation }: any) {
+    const token = useAppSelector(authState);
+
+    const dispatch = useAppDispatch();
+    const classrooms = useAppSelector(classroomListState);
+    const [open, setOpen] = React.useState(false);
+
+    React.useEffect(() => {
+        if (token !== null) FetchClassroomList(dispatch, token.data);
+    }, []);
+
+    const renderClassContainer = ({ item }: { item: any }) => (
+        <TouchableOpacity
+            onPress={() => navigation.navigate('ClassView', { item: item, isOwner: false })}
+        >
+            <ClassContainer name={item.name} color={item.color} />
+        </TouchableOpacity>
+    );
+
     return (
         <View style={styles.container}>
-            <ClassContainer name={'Matematyka'} teacher={'Barnaba bazyli'} color={'yellow'} />
+            <FlatList
+                data={classrooms?.data?.filter((c) => !c.is_archived)}
+                renderItem={renderClassContainer}
+                keyExtractor={(item) => item.id}
+            />
+            <SpeedDial
+                isOpen={open}
+                icon={{ name: 'add', color: '#fff' }}
+                openIcon={{ name: 'close', color: '#fff' }}
+                onOpen={() => setOpen(!open)}
+                onClose={() => setOpen(!open)}
+            >
+                <SpeedDial.Action
+                    icon={{ name: 'add', color: '#fff' }}
+                    title="Dołącz do klasy"
+                    onPress={() => navigation.navigate('JoinClass')}
+                />
+                <SpeedDial.Action
+                    icon={{ name: 'add', color: '#fff' }}
+                    title="Utwórz klasę"
+                    onPress={() => console.log()} //todo
+                />
+            </SpeedDial>
         </View>
     );
 }

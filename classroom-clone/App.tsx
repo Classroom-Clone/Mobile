@@ -6,6 +6,7 @@ import { Store } from './store';
 import React from 'react';
 import ThemeProvider from 'react-native-elements/dist/config/ThemeProvider';
 import MyStack from './navigation/router';
+import Toast from 'react-native-toast-message';
 
 export default function App() {
     const isLoadingComplete = useCachedResources();
@@ -21,13 +22,14 @@ export default function App() {
         return null;
     } else {
         return (
-            // <Provider store={Store}>
-            <ThemeProvider theme={theme}>
-                <SafeAreaProvider>
-                    <MyStack />
-                </SafeAreaProvider>
-            </ThemeProvider>
-            // </Provider>
+            <Provider store={Store}>
+                <ThemeProvider theme={theme}>
+                    <SafeAreaProvider>
+                        <MyStack />
+                        <Toast />
+                    </SafeAreaProvider>
+                </ThemeProvider>
+            </Provider>
         );
     }
 }
