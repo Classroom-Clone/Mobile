@@ -1,4 +1,4 @@
-import Toast from "react-native-toast-message";
+import Toast from 'react-native-toast-message';
 
 export const SendGetRequest = async (url: string, token: string) =>
     fetch(url, {
@@ -14,7 +14,7 @@ export const SendGetRequest = async (url: string, token: string) =>
         .then((data) => {
             return data;
         })
-        .catch(() => { });
+        .catch(() => {});
 
 export const SendPostRequest = async (url: string, token: string | null, payload: any) =>
     fetch(url, {
@@ -63,7 +63,7 @@ export const SendPostWithoutPayloadRequest = async (url: string) =>
         .then((data) => {
             return data;
         })
-        .catch(() => { });
+        .catch(() => {});
 
 export const SendPutRequest = async (url: string, token: string, payload: any) =>
     fetch(url, {
@@ -77,7 +77,7 @@ export const SendPutRequest = async (url: string, token: string, payload: any) =
         .then((response) => {
             return response.status === 200 ? response.json() : '';
         })
-        .catch(() => { });
+        .catch(() => {});
 
 export const SendPutWithoutPayloadRequest = async (url: string, token: string) =>
     fetch(url, {
@@ -90,7 +90,7 @@ export const SendPutWithoutPayloadRequest = async (url: string, token: string) =
         .then((response) => {
             return response.status === 200 ? response.json() : '';
         })
-        .catch(() => { });
+        .catch(() => {});
 
 export const SendDeleteRequest = async (url: string, token: string) =>
     fetch(url, {
@@ -103,5 +103,5 @@ export const SendDeleteRequest = async (url: string, token: string) =>
         .then((response) => {
             return response.status === 200 ? response.json() : '';
         })
-        .then((data) => { })
-        .catch(() => { });
+        .then((data) => {})
+        .catch(() => {});
