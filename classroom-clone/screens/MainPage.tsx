@@ -24,8 +24,6 @@ export default function MainPage({ navigation }: any) {
 
     React.useEffect(() => {
         if (token !== null) {
-            console.log(token, classrooms);
-
             FetchClassroomList(dispatch, token.data);
         }
     }, []);

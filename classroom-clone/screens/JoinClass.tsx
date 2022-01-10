@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function JoinClass({ navigation }: any) {
+export default function JoinClass() {
     const [joinCode, setJoinCode] = useState('');
 
     const token = useAppSelector(authState);

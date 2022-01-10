@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { authState } from '../store/selectors';
 import { API_URL } from '@env';
 import { Text, View } from '../components/Themed';
-import { Input } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { CreateAssignment } from '../store/reducer/classroom/action';
 import StyledButtonComponent from '../components/StyledButtonComponent';

@@ -4,8 +4,7 @@ import { StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements/dist/buttons/Button';
 import { View } from '../components/Themed';
 import { FetchLogin } from '../store/reducer/auth/action';
-import { useAppDispatch, useAppSelector } from '../store';
-import { authState } from '../store/selectors';
+import { useAppDispatch } from '../store';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,8 +37,6 @@ export default function Login({ navigation }: any) {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const dispatch = useAppDispatch();
-
-    const token = useAppSelector(authState);
 
     const handleLoginButton = () => {
         FetchLogin(dispatch, { email, password }).then(() => navigation.navigate('HomeLogged'));

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function ClassMembersView({ navigation, route }: any) {
+export default function ClassMembersView({ route }: any) {
     const { color, name, id } = route?.params.classe;
 
     const token = useAppSelector(authState);
