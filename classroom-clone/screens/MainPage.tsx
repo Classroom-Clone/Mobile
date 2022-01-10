@@ -19,12 +19,8 @@ export default function MainPage({ navigation }: any) {
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const classrooms: ClassroomListInterface = useAppSelector(classroomListState);
+    const classrooms = useAppSelector(classroomListState);
     const [open, setOpen] = React.useState(false);
-
-    console.log(token);
-    console.log(token, classrooms);
-
 
     React.useEffect(() => {
         if (token !== null) {
