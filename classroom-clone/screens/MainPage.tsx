@@ -26,8 +26,8 @@ export default function MainPage({ navigation }: any) {
         if (token !== null) {
             console.log(token, classrooms);
 
-            FetchClassroomList(dispatch, token.data)
-        };
+            FetchClassroomList(dispatch, token.data);
+        }
     }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (

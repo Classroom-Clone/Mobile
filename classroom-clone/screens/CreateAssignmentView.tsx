@@ -74,7 +74,7 @@ export default function CreateAssignmentView({ navigation, route }: any) {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [points, setPoints] = useState(0);
-    const [dueDate, setDueDate] = useState(new Date((Date.now() + 6.048e8)));
+    const [dueDate, setDueDate] = useState(new Date(Date.now() + 6.048e8));
     const [show, setShow] = useState(false);
 
     const [buttonText, setButtonText] = useState(
@@ -82,7 +82,12 @@ export default function CreateAssignmentView({ navigation, route }: any) {
     );
 
     const createAssignment = async () => {
-        await CreateAssignment(dispatch, token.data, id, { title: title, content: content, points: points, due_date: dueDate.toDateString() });
+        await CreateAssignment(dispatch, token.data, id, {
+            title: title,
+            content: content,
+            points: points,
+            due_date: dueDate.toDateString()
+        });
     };
 
     const handleInputChange = (text: string) => {

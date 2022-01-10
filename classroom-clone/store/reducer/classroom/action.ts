@@ -85,11 +85,7 @@ export async function CreatePost(
     await FetchPostsList(dispatch, token, classId);
 }
 
-export async function CreateClassroom(
-    dispatch: any,
-    token: string,
-    payload: ClassroomModel
-) {
+export async function CreateClassroom(dispatch: any, token: string, payload: ClassroomModel) {
     await PostClassroom(token, payload);
     await FetchClassroomList(dispatch, token);
 }

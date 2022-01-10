@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         width: '75%',
         alignSelf: 'center',
         color: 'white'
-    },
+    }
 });
 
 export default function CreateClass({ navigation }: any) {
@@ -61,7 +61,11 @@ export default function CreateClass({ navigation }: any) {
     };
 
     const createClass = async () => {
-        await CreateClassroom(dispatch, token.data, { name: name, description: description, accent_color: accentColor }).then(() => redirectToClassroom());
+        await CreateClassroom(dispatch, token.data, {
+            name: name,
+            description: description,
+            accent_color: accentColor
+        }).then(() => redirectToClassroom());
     };
 
     const hslToHex = (h: any) => {
@@ -108,11 +112,7 @@ export default function CreateClass({ navigation }: any) {
                     thumbTintColor={hslToHex(sliderValue)}
                 />
             </View>
-            <StyledButtonComponent
-                method={() => createClass()}
-                title="Utwórz"
-                width={100}
-            />
+            <StyledButtonComponent method={() => createClass()} title="Utwórz" width={100} />
         </View>
     );
 }
