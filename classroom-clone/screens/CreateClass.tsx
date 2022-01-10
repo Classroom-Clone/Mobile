@@ -61,11 +61,12 @@ export default function CreateClass({ navigation }: any) {
     };
 
     const createClass = async () => {
-        await CreateClassroom(dispatch, token.data, {
-            name: name,
-            description: description,
-            accent_color: accentColor
-        }).then(() => redirectToClassroom());
+        if (token)
+            await CreateClassroom(dispatch, token.data, {
+                name: name,
+                description: description,
+                accent_color: accentColor
+            }).then(() => redirectToClassroom());
     };
 
     const hslToHex = (h: any) => {

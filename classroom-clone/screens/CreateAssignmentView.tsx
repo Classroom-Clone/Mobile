@@ -6,10 +6,10 @@ import { useAppDispatch, useAppSelector } from '../store';
 import { authState } from '../store/selectors';
 import { API_URL } from '@env';
 import { Text, View } from '../components/Themed';
-import { Input } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import { CreateAssignment } from '../store/reducer/classroom/action';
+import StyledButtonComponent from '../components/StyledButtonComponent';
 
 const styles = StyleSheet.create({
     container: {
@@ -82,12 +82,13 @@ export default function CreateAssignmentView({ navigation, route }: any) {
     );
 
     const createAssignment = async () => {
-        await CreateAssignment(dispatch, token.data, id, {
-            title: title,
-            content: content,
-            points: points,
-            due_date: dueDate.toDateString()
-        });
+        if (token)
+            await CreateAssignment(dispatch, token?.data, id, {
+                title: title,
+                content: content,
+                points: points,
+                due_date: dueDate.toDateString()
+            });
     };
 
     const handleInputChange = (text: string) => {
@@ -152,7 +153,7 @@ export default function CreateAssignmentView({ navigation, route }: any) {
                 </View>
             </View>
             <Text style={styles.attachments}>Załączniki:</Text>
-            <Button title="Utwórz" style={styles.button} onPress={createAssignment} />
+            <StyledButtonComponent method={() => createAssignment()} title="Utwórz" width={100} />
         </View>
     );
 }
