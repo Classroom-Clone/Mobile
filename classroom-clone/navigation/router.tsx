@@ -7,6 +7,7 @@ import MyDrawer from './drawer';
 import Login from '../screens/Login';
 import Registration from '../screens/Registration';
 import MainPage from '../screens/MainPage';
+import CreateClass from '../screens/CreateClass';
 import ArchivedClasses from '../screens/ArchivedClasses';
 import JoinClass from '../screens/JoinClass';
 import ClassPostView from '../screens/ClassPostView';
@@ -14,6 +15,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import CreateAssignment from '../screens/CreateAssignment';
 import ClassAssignmentsView from '../screens/ClassAssignmentsView';
 import ClassMembersView from '../screens/ClassMembersView';
 import { View } from 'react-native';
@@ -104,6 +106,11 @@ const MyStack = () => {
                 />
                 <Stack.Screen name="Start" component={Home} options={{ title: 'Strona Główna' }} />
                 <Stack.Screen
+                    name="CreateClass"
+                    component={CreateClass}
+                    options={{ title: 'Utwórz klasę' }}
+                />
+                <Stack.Screen
                     name="ArchivedClasses"
                     component={ArchivedClasses}
                     options={{ title: 'Zarchiwizowane klasy' }}
@@ -117,6 +124,11 @@ const MyStack = () => {
                     name="ClassView"
                     component={MyTabs}
                     options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="CreateAssignment"
+                    component={CreateAssignment}
+                    options={{ title: 'Utwórz zadanie' }}
                 />
                 <Stack.Screen
                     name="AcccomplishedTasks"
