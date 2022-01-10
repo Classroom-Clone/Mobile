@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Platform } from 'react-native';
+import { dateFormat } from '../helpers/date/DateHelper';
+import { DateEnum } from '../helpers/enums/DateEnum';
 import { useAppSelector } from '../store';
 import { authState } from '../store/selectors';
 import { API_URL } from '@env';
@@ -70,17 +72,9 @@ export default function CreateAssignment({ navigation }: any) {
     const [dueDate, setDueDate] = useState(new Date());
     const [show, setShow] = useState(false);
 
-    const formatDate = (anyDate: any) => {
-        return (
-            ('0' + anyDate.getDate()).slice(-2) +
-            '.' +
-            ('0' + (anyDate.getMonth() + 1)).slice(-2) +
-            '.' +
-            anyDate.getFullYear()
-        );
-    };
-
-    const [buttonText, setButtonText] = useState(formatDate(new Date(Date.now() + 6.048e8)));
+    const [buttonText, setButtonText] = useState(
+        dateFormat(new Date(Date.now() + 6.048e8), DateEnum.Date)
+    );
 
     const token = useAppSelector(authState);
 
@@ -119,7 +113,7 @@ export default function CreateAssignment({ navigation }: any) {
         setShow(Platform.OS === 'ios');
         setDueDate(currentDate);
         let tempDate = new Date(currentDate);
-        setButtonText(formatDate(tempDate));
+        setButtonText(dateFormat(tempDate, DateEnum.Date));
     };
 
     const showDatepicker = () => {
