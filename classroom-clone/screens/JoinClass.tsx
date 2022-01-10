@@ -3,11 +3,9 @@ import { StyleSheet } from 'react-native';
 import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import ErrorModal from '../components/ErrorModal';
-import { getResponseJson } from '../helpers/functions/GetResponseJson';
-import { API_URL } from '@env';
 import { useAppSelector } from '../store';
 import { authState } from '../store/selectors';
+import { JoinToClassroom } from '../store/service/classroom/ClassroomService';
 
 const styles = StyleSheet.create({
     container: {
@@ -38,35 +36,13 @@ const styles = StyleSheet.create({
 
 export default function JoinClass({ navigation }: any) {
     const [joinCode, setJoinCode] = useState('');
-    const [errorVisible, setErrorVisible] = useState(false);
 
     const token = useAppSelector(authState);
 
-    const redirectToClassroom = () => {
-        navigation.navigate('MainPage');
-    };
-
-    const toggleErrorVisible = () => {
-        setErrorVisible(!errorVisible);
-    };
-
     const joinToClass = async () => {
-        const url = API_URL + '/me/classrooms/join';
-
-        await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                join_code: joinCode
-            })
-        })
-            .then(getResponseJson)
-            .then(redirectToClassroom)
-            .catch(toggleErrorVisible);
+        if (token) {
+            JoinToClassroom(token.data, joinCode);
+        }
     };
 
     return (
@@ -79,7 +55,7 @@ export default function JoinClass({ navigation }: any) {
                 placeholder="Kod zajęć"
                 onChangeText={(value: string) => setJoinCode(value)}
             />
-            <View style={styles.button}>
+            <View style={{ width: '100%' }}>
                 <Button
                     title="Dodaj"
                     style={styles.button}
@@ -87,12 +63,6 @@ export default function JoinClass({ navigation }: any) {
                     onPress={joinToClass}
                 />
             </View>
-            <ErrorModal
-                title="Wystąpił błąd"
-                description="Sprawdz czy nie zostały wprowadzone błędne dane."
-                visible={errorVisible}
-                onPress={toggleErrorVisible}
-            />
         </View>
     );
 }

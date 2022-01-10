@@ -28,12 +28,14 @@ export const SendPostRequest = async (url: string, token: string | null, payload
         .then((response) => {
             if (response.status >= 300) {
                 Toast.show({
+                    onPress: Toast.hide,
                     type: 'error',
                     text1: 'Wystąpił błąd'
                 });
             }
             if (response.status < 300) {
                 Toast.show({
+                    onPress: Toast.hide,
                     type: 'success',
                     text1: 'Sukces'
                 });
@@ -45,6 +47,7 @@ export const SendPostRequest = async (url: string, token: string | null, payload
         })
         .catch(() => {
             Toast.show({
+                onPress: Toast.hide,
                 type: 'error',
                 text1: 'Wystąpił błąd'
             });

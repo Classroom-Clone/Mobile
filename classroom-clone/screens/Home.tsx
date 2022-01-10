@@ -30,7 +30,7 @@ export default function Home({ navigation }: any) {
         <View style={styles.container}>
             <Text style={styles.title}>Witamy w aplikacji do zarządzania klasą online</Text>
             <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <View style={styles.button}>
+            <View style={{ width: '70%' }}>
                 <Button
                     title="Zaloguj się"
                     style={styles.button}
@@ -39,7 +39,7 @@ export default function Home({ navigation }: any) {
                 />
             </View>
             <Text style={styles.title}>lub</Text>
-            <View style={styles.button}>
+            <View style={{ width: '70%' }}>
                 <Button
                     buttonStyle={{ backgroundColor: 'grey' }}
                     title="Zarejestruj się"

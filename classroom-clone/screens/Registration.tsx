@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function Registration() {
+export default function Registration({ navigation }: any) {
     const dispatch = useAppDispatch();
 
     const [login, setLogin] = React.useState('');
@@ -42,6 +42,14 @@ export default function Registration() {
     const [confirmPassword, setConfirmPassword] = React.useState('');
     const [firstName, setFirstName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
+
+    const resetForm = () => {
+        setPassword('');
+        setConfirmPassword('');
+        setFirstName('');
+        setLastName('');
+        setLogin('');
+    };
 
     const handleRegister = () => {
         if (
@@ -58,12 +66,9 @@ export default function Registration() {
                     last_name: lastName,
                     password: password,
                     password_confirmation: confirmPassword
-                });
-                setPassword('');
-                setConfirmPassword('');
-                setFirstName('');
-                setLastName('');
-                setLogin('');
+                }).then(() => navigation.navigate('HomeLogged'));
+
+                resetForm();
             } else {
                 Toast.show({
                     type: 'error',

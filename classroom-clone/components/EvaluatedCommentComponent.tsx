@@ -48,11 +48,22 @@ export default function EvaluatedCommentComponent(props: IDefaultProps) {
                 onChangeText={(value) => setComment(value)}
             />
             {comment.length > 0 && (
-                <StyledButtonComponent
-                    method={() => handleCommentSubmission()}
-                    title="Dodaj komentarz"
-                    width={200}
-                />
+                <View
+                    style={{
+                        width: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        borderBottomColor: 'grey',
+                        borderBottomWidth: 2,
+                        alignItems: 'center'
+                    }}
+                >
+                    <StyledButtonComponent
+                        method={() => handleCommentSubmission()}
+                        title="Dodaj komentarz"
+                        width={200}
+                    />
+                </View>
             )}
         </View>
     );
