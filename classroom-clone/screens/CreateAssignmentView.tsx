@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { StyleSheet, Platform } from 'react-native';
 import { dateFormat } from '../helpers/date/DateHelper';
 import { DateEnum } from '../helpers/enums/DateEnum';
-import { useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { authState } from '../store/selectors';
 import { API_URL } from '@env';
 import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import { CreateAssignment } from '../store/reducer/classroom/action';
 
 const styles = StyleSheet.create({
     container: {
@@ -65,45 +66,28 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function CreateAssignment({ navigation }: any) {
+export default function CreateAssignmentView({ navigation, route }: any) {
+    const { id } = route?.params;
+    const dispatch = useAppDispatch();
+    const token = useAppSelector(authState);
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [points, setPoints] = useState('');
-    const [dueDate, setDueDate] = useState(new Date());
+    const [points, setPoints] = useState(0);
+    const [dueDate, setDueDate] = useState(new Date((Date.now() + 6.048e8)));
     const [show, setShow] = useState(false);
 
     const [buttonText, setButtonText] = useState(
         dateFormat(new Date(Date.now() + 6.048e8), DateEnum.Date)
     );
 
-    const token = useAppSelector(authState);
-
-    const redirectToAssignment = () => {
-        navigation.navigate('AssignmentDetails');
-    };
-
     const createAssignment = async () => {
-        const url = API_URL + '/classrooms//assignments';
-
-        await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                title: title,
-                content: content,
-                points: points,
-                due_date: dueDate
-            })
-        }).then(redirectToAssignment);
+        await CreateAssignment(dispatch, token.data, id, { title: title, content: content, points: points, due_date: dueDate.toDateString() });
     };
 
     const handleInputChange = (text: string) => {
         if ((/^\d+$/.test(text) || text === '') && +text <= 100) {
-            setPoints(text);
+            setPoints(Number(text));
         }
         console.log(new Date().toLocaleDateString());
     };
@@ -139,7 +123,7 @@ export default function CreateAssignment({ navigation }: any) {
                 <Input
                     style={styles.points}
                     placeholder={'Podaj ilość'}
-                    value={points}
+                    value={points.toString()}
                     inputContainerStyle={styles.pointsInputContainer}
                     onChangeText={handleInputChange}
                     keyboardType="numeric"

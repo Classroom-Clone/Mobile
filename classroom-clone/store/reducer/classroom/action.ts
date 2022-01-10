@@ -1,11 +1,14 @@
 import ActionsEnums from '../../../helpers/enums/ActionEnums';
-import { GetAssignmentsList } from '../../service/classroom/AssignmentService';
+import { GetAssignmentsList, PostAssignment } from '../../service/classroom/AssignmentService';
 import {
     GetArchivedClassroomsList,
     GetClassroomList,
-    GetOwnedClassroomList
+    GetOwnedClassroomList,
+    PostClassroom
 } from '../../service/classroom/ClassroomService';
 import { GetMembersList } from '../../service/classroom/MemberService';
+import { AssignmentModel } from '../../service/classroom/Models/AssignmentModel';
+import { ClassroomModel } from '../../service/classroom/Models/ClassroomModel';
 import { PostModel } from '../../service/classroom/Models/PostModel';
 import { GetPostsList, SendPost } from '../../service/classroom/PostService';
 import { GetSubmissionsList } from '../../service/classroom/SubmissionService';
@@ -80,4 +83,23 @@ export async function CreatePost(
 ) {
     await SendPost(token, classId, payload);
     await FetchPostsList(dispatch, token, classId);
+}
+
+export async function CreateClassroom(
+    dispatch: any,
+    token: string,
+    payload: ClassroomModel
+) {
+    await PostClassroom(token, payload);
+    await FetchClassroomList(dispatch, token);
+}
+
+export async function CreateAssignment(
+    dispatch: any,
+    token: string,
+    classId: number,
+    payload: AssignmentModel
+) {
+    await PostAssignment(token, classId, payload);
+    await FetchAssignmentsList(dispatch, token, classId);
 }

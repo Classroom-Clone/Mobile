@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { useAppSelector } from '../store';
+import { useAppDispatch, useAppSelector } from '../store';
 import { authState } from '../store/selectors';
 import { API_URL } from '@env';
 import { View, Text } from '../components/Themed';
 import { Input, Slider } from 'react-native-elements';
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import { CreateClassroom } from '../store/reducer/classroom/action';
+import StyledButtonComponent from '../components/StyledButtonComponent';
 
 const styles = StyleSheet.create({
     container: {
@@ -43,19 +45,10 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         color: 'white'
     },
-    button: {
-        flex: 1,
-        alignSelf: 'center',
-        marginTop: 100,
-        paddingHorizontal: 20,
-        backgroundColor: 'transparent',
-        borderWidth: 1,
-        borderColor: 'white',
-        borderRadius: 20
-    }
 });
 
 export default function CreateClass({ navigation }: any) {
+    const dispatch = useAppDispatch();
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
     let [accentColor] = useState('#ff0000');
@@ -64,25 +57,11 @@ export default function CreateClass({ navigation }: any) {
     const token = useAppSelector(authState);
 
     const redirectToClassroom = () => {
-        navigation.navigate('ClassView');
+        navigation.navigate('HomeLogged');
     };
 
     const createClass = async () => {
-        const url = API_URL + '/classrooms';
-
-        await fetch(url, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-                name: name,
-                description: description,
-                accent_color: accentColor
-            })
-        }).then(redirectToClassroom);
+        await CreateClassroom(dispatch, token.data, { name: name, description: description, accent_color: accentColor }).then(() => redirectToClassroom());
     };
 
     const hslToHex = (h: any) => {
@@ -129,7 +108,11 @@ export default function CreateClass({ navigation }: any) {
                     thumbTintColor={hslToHex(sliderValue)}
                 />
             </View>
-            <Button title="Utwórz" style={styles.button} onPress={createClass} />
+            <StyledButtonComponent
+                method={() => createClass()}
+                title="Utwórz"
+                width={100}
+            />
         </View>
     );
 }
