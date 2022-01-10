@@ -42,7 +42,7 @@ export default function ArchivedClasses({ navigation }: any) {
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const archivedClassrooms = useAppSelector(archivedClassroomListState);
+    const archivedClassrooms: ClassroomListInterface = useAppSelector(archivedClassroomListState);
 
     React.useEffect(() => {
         if (token !== null) {

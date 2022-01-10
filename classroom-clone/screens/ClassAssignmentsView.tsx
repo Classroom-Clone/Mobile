@@ -31,7 +31,7 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const assignments = useAppSelector(assignmentsListState);
+    const assignments: AssignmentListInterface = useAppSelector(assignmentsListState);
 
     React.useEffect(() => {
         if (token !== null) FetchAssignmentsList(dispatch, token.data, classe.id);

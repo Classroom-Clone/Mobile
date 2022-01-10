@@ -8,7 +8,6 @@ import { API_URL } from '@env';
 import { Text, View } from '../components/Themed';
 import { Input } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { Button } from 'react-native-elements/dist/buttons/Button';
 import { CreateAssignment } from '../store/reducer/classroom/action';
 import StyledButtonComponent from '../components/StyledButtonComponent';
 
