@@ -15,7 +15,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import CreateAssignment from '../screens/CreateAssignment';
+import CreateAssignmentView from '../screens/CreateAssignmentView';
 import ClassAssignmentsView from '../screens/ClassAssignmentsView';
 import ClassMembersView from '../screens/ClassMembersView';
 import { View } from 'react-native';
@@ -128,7 +128,7 @@ const MyStack = () => {
                 />
                 <Stack.Screen
                     name="CreateAssignment"
-                    component={CreateAssignment}
+                    component={CreateAssignmentView}
                     options={{ title: 'Utwórz zadanie' }}
                 />
                 <Stack.Screen

@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: 100,
         flexWrap: 'wrap'
     },
     header: {
@@ -22,7 +21,10 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         backgroundColor: 'grey',
         borderBottomColor: 'white',
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
+        width: '100%',
+        paddingBottom: 5,
+        minHeight: 90
     },
     nameText: {
         flexWrap: 'wrap',
@@ -31,6 +33,7 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     redirectToDetails: {
+        height: 20,
         textAlign: 'center',
         alignItems: 'center'
     }

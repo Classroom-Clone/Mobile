@@ -7,6 +7,7 @@ import ClassContainer from '../components/ClassContainer';
 import { useAppDispatch, useAppSelector } from '../store';
 import { archivedClassroomListState, authState } from '../store/selectors';
 import { FetchArchivedClassroomList } from '../store/reducer/classroom/action';
+import { ClassroomListInterface } from '../store/interface/classroom/ClassroomInterface';
 
 const styles = StyleSheet.create({
     container: {
@@ -41,7 +42,7 @@ export default function ArchivedClasses({ navigation }: any) {
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const archivedClassrooms = useAppSelector(archivedClassroomListState);
+    const archivedClassrooms: ClassroomListInterface = useAppSelector(archivedClassroomListState);
 
     React.useEffect(() => {
         if (token !== null) {

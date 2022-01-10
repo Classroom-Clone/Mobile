@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         borderBottomColor: 'white',
         borderBottomWidth: 2,
         width: '100%',
-        paddingBottom: '5',
+        paddingBottom: 5,
         minHeight: 90
     },
     nameText: {

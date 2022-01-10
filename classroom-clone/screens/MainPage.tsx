@@ -4,9 +4,10 @@ import { FlatList, View } from '../components/Themed';
 import ClassContainer from '../components/ClassContainer';
 import { useAppDispatch, useAppSelector } from '../store';
 import { authState, classroomListState } from '../store/selectors';
-import { FetchClassroomList } from '../store/reducer/classroom/action';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SpeedDial } from 'react-native-elements';
+import { FetchClassroomList } from '../store/reducer/classroom/action';
+import { ClassroomListInterface } from '../store/interface/classroom/ClassroomInterface';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,7 +23,11 @@ export default function MainPage({ navigation }: any) {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
-        if (token !== null) FetchClassroomList(dispatch, token.data);
+        if (token !== null) {
+            console.log(token, classrooms);
+
+            FetchClassroomList(dispatch, token.data);
+        }
     }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (
@@ -55,7 +60,7 @@ export default function MainPage({ navigation }: any) {
                 <SpeedDial.Action
                     icon={{ name: 'add', color: '#fff' }}
                     title="Utwórz klasę"
-                    onPress={() => console.log()} //todo
+                    onPress={() => navigation.navigate('CreateClass')}
                 />
             </SpeedDial>
         </View>

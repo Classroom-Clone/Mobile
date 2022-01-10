@@ -6,6 +6,7 @@ import AssignmentComponent from '../components/AssignmentComponent';
 import { useAppDispatch, useAppSelector } from '../store';
 import { assignmentsListState, authState } from '../store/selectors';
 import { FetchAssignmentsList } from '../store/reducer/classroom/action';
+import { AssignmentListInterface } from '../store/interface/classroom/AssignmentInterface';
 
 const styles = StyleSheet.create({
     container: {
@@ -30,7 +31,7 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
     const token = useAppSelector(authState);
 
     const dispatch = useAppDispatch();
-    const assignments = useAppSelector(assignmentsListState);
+    const assignments: AssignmentListInterface = useAppSelector(assignmentsListState);
 
     React.useEffect(() => {
         if (token !== null) FetchAssignmentsList(dispatch, token.data, classe.id);
@@ -44,6 +45,7 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
                     icon={{ name: 'add', color: '#C0C0C0' }}
                     color="#3E3E3E"
                     placement="right"
+                    onPress={() => navigation.navigate('CreateAssignment', { id: classe.id })}
                 />
             );
         }
