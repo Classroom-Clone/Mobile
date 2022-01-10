@@ -27,6 +27,7 @@ import CreatePostView from '../screens/CreatePostView';
 import AddCommentView from '../screens/CommentsView';
 import PostDetailsView from '../screens/PostDetailsView';
 import AssignmentDetailsView from '../screens/AssignmentDetailsView';
+import ReturnTaskView from '../screens/ReturnTaskView';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -159,6 +160,11 @@ const MyStack = () => {
                     name="AssignmentDetails"
                     component={AssignmentDetailsView}
                     options={{ title: 'Szczegóły zadania' }}
+                />
+                <Stack.Screen
+                    name="ReturnTaskView"
+                    component={ReturnTaskView}
+                    options={{ title: 'Twoje zadanie' }}
                 />
                 <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
             </Stack.Navigator>

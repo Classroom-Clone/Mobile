@@ -42,10 +42,7 @@ export default function Login({ navigation }: any) {
     const token = useAppSelector(authState);
 
     const handleLoginButton = () => {
-        FetchLogin(dispatch, { email, password });
-        if (token !== null) {
-            navigation.navigate('HomeLogged');
-        }
+        FetchLogin(dispatch, { email, password }).then(() => navigation.navigate('HomeLogged'));
     };
 
     return (

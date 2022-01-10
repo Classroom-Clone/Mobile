@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding: '2%',
         color: 'white'
     },
-    atachmentElement: {
+    attachmentElement: {
         paddingTop: '1%',
         paddingLeft: '5%'
     },
@@ -45,7 +45,7 @@ export default function AssignmentDetailsView({ navigation, route }: any) {
     const dispatch = useAppDispatch();
     const token = useAppSelector(authState);
 
-    const handlePress = () => {
+    const handleComments = () => {
         if (token) {
             FetchPostCommentsList(dispatch, token.data, assignmentDetails.id);
             navigation.navigate('AddComment', { id: assignmentDetails.id, type: 'assignments' });
@@ -74,7 +74,7 @@ export default function AssignmentDetailsView({ navigation, route }: any) {
                         key={attachment.id}
                         onPress={() => Linking.openURL(attachment.url)}
                     >
-                        <View style={styles.atachmentElement}>
+                        <View style={styles.attachmentElement}>
                             <Text style={styles.nameText}>- {attachment.display_name}</Text>
                         </View>
                     </TouchableOpacity>
@@ -84,8 +84,13 @@ export default function AssignmentDetailsView({ navigation, route }: any) {
                     {stringDateFormat(assignmentDetails.due_date, DateEnum.DateTime)}
                 </Text>
                 <StyledButtonComponent
-                    method={() => handlePress()}
+                    method={() => handleComments()}
                     title="Sekcja komentarzy"
+                    width={300}
+                />
+                <StyledButtonComponent
+                    method={() => navigation.navigate('ReturnTaskView', assignment)}
+                    title="Oddaj zadanie"
                     width={300}
                 />
             </ScrollView>

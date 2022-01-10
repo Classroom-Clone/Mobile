@@ -36,6 +36,19 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
         if (token !== null) FetchAssignmentsList(dispatch, token.data, classe.id);
     }, []);
 
+    const renderButton = () => {
+        if (isOwner) {
+            return (
+                <FAB
+                    style={{ paddingTop: 10 }}
+                    icon={{ name: 'add', color: '#C0C0C0' }}
+                    color="#3E3E3E"
+                    placement="right"
+                />
+            );
+        }
+    };
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={{ width: '100%', height: '20%', backgroundColor: classe.color }}>
@@ -53,12 +66,7 @@ export default function ClassAssignmentsView({ navigation, route }: any) {
                     />
                 ))}
             </ScrollView>
-            <FAB
-                style={{ paddingTop: 10 }}
-                icon={{ name: 'add', color: '#C0C0C0' }}
-                color="#3E3E3E"
-                placement="right"
-            />
+            {renderButton()}
         </SafeAreaView>
     );
 }

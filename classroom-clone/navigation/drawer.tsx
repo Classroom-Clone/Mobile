@@ -3,12 +3,10 @@ import React from 'react';
 import Home from '../screens/Home';
 import ArchivedClasses from '../screens/ArchivedClasses';
 import JoinClass from '../screens/JoinClass';
-import ClassView from '../screens/ClassPostView';
 import MainPage from '../screens/MainPage';
+import OwnedClassRooms from '../screens/OwnedClassRooms';
 import { authState } from '../store/selectors';
 import { useAppSelector } from '../store';
-import { MyTabs } from './router';
-import OwnedClassrooms from '../screens/OwnedClassRooms';
 
 const Drawer = createDrawerNavigator();
 
@@ -26,7 +24,7 @@ const MyDrawer = () => {
                     />
                     <Drawer.Screen
                         name="OwnedClassrooms"
-                        component={OwnedClassrooms}
+                        component={OwnedClassRooms}
                         options={{ title: 'Własne klasy' }}
                     />
                     <Drawer.Screen
@@ -41,7 +39,11 @@ const MyDrawer = () => {
                     />
                 </React.Fragment>
             ) : (
-                <Drawer.Screen name="Home" component={Home} options={{ title: 'Strona Główna' }} />
+                <Drawer.Screen
+                    name="Home"
+                    component={Home}
+                    options={{ title: 'Strona Główna', headerShown: false }}
+                />
             )}
         </Drawer.Navigator>
     );

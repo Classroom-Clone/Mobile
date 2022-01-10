@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
     class: {
         backgroundColor: 'grey',
         margin: '5%',
-        height: 100,
         flexWrap: 'wrap'
     },
     header: {
@@ -23,7 +22,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         borderBottomColor: 'white',
         borderBottomWidth: 2,
-        height: 80
+        width: '100%',
+        paddingBottom: '5',
+        minHeight: 90
     },
     nameText: {
         flexWrap: 'wrap',
@@ -58,8 +59,8 @@ export default function ClassViewElement(props: IDefaultProps) {
         <View style={styles.class}>
             <TouchableOpacity onPress={() => navigation.navigate('PostDetails', { post: post })}>
                 <View style={styles.header}>
-                    <View style={{ width: 90, display: 'flex', flexDirection: 'row' }}>
-                        <View style={{ marginTop: '5%', paddingLeft: '2%' }}>
+                    <View style={{ width: '100%', display: 'flex', flexDirection: 'row' }}>
+                        <View style={{ padding: '5%' }}>
                             <Icon color="white" name="circle" />
                         </View>
                         <Text style={styles.nameText}>{post.title}</Text>

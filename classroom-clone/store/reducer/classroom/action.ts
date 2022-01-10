@@ -1,13 +1,27 @@
 import ActionsEnums from '../../../helpers/enums/ActionEnums';
 import { GetAssignmentsList } from '../../service/classroom/AssignmentService';
-import { GetClassroomList, GetOwnedClassroomList } from '../../service/classroom/ClassroomService';
+import {
+    GetArchivedClassroomsList,
+    GetClassroomList,
+    GetOwnedClassroomList
+} from '../../service/classroom/ClassroomService';
 import { GetMembersList } from '../../service/classroom/MemberService';
 import { PostModel } from '../../service/classroom/Models/PostModel';
 import { GetPostsList, SendPost } from '../../service/classroom/PostService';
 import { GetSubmissionsList } from '../../service/classroom/SubmissionService';
 
+export async function FetchArchivedClassroomList(dispatch: any, token: string, count: number) {
+    const result = await GetArchivedClassroomsList(token, count);
+
+    dispatch({
+        payload: result,
+        type: ActionsEnums.GET_ARCHIVED_CLASSROOM_LIST
+    });
+}
+
 export async function FetchClassroomList(dispatch: any, token: string) {
     const result = await GetClassroomList(token);
+
     dispatch({
         payload: result,
         type: ActionsEnums.GET_CLASSROOM_LIST

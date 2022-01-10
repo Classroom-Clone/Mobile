@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         padding: '2%',
         color: 'white'
     },
-    atachmentElement: {
+    attachmentElement: {
         paddingTop: '1%',
         paddingLeft: '5%'
     },
@@ -71,7 +71,7 @@ export default function PostDetailsView({ navigation, route }: any) {
                 )}
                 {postDetails.links.map((link) => (
                     <TouchableOpacity key={link.url} onPress={() => Linking.openURL(link.url)}>
-                        <View style={styles.atachmentElement}>
+                        <View style={styles.attachmentElement}>
                             <Text style={styles.nameText}>- {link.name}</Text>
                         </View>
                     </TouchableOpacity>
@@ -86,7 +86,7 @@ export default function PostDetailsView({ navigation, route }: any) {
                         key={attachment.id}
                         onPress={() => Linking.openURL(attachment.url)}
                     >
-                        <View style={styles.atachmentElement}>
+                        <View style={styles.attachmentElement}>
                             <Text style={styles.nameText}>- {attachment.display_name}</Text>
                         </View>
                     </TouchableOpacity>

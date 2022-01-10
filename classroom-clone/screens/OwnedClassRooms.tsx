@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function OwnedClassrooms({ navigation }: any) {
+export default function OwnedClassRooms({ navigation }: any) {
     const token = useAppSelector(authState);
     const dispatch = useAppDispatch();
     const classrooms = useAppSelector(ownedClassroomListState);
