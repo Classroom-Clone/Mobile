@@ -88,7 +88,7 @@ export default function CreatePostView({ route }: any) {
                 onChangeText={(value) => setContent(value)}
             />
             <Text style={styles.text}>Załączniki:</Text>
-            {doc?.type === 'success' ? doc.name : ''}
+            <Text style={styles.text}>{doc?.type === 'success' ? doc.name : ''}</Text>
             <View style={styles.button}>
                 <StyledButtonComponent title="Dodaj załącznik" method={pickDocument} width={200} />
             </View>
