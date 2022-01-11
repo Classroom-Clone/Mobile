@@ -54,7 +54,7 @@ export default function OwnedClassRooms({ navigation }: any) {
                 <SpeedDial.Action
                     icon={{ name: 'add', color: '#fff' }}
                     title="Utwórz klasę"
-                    onPress={() => navigation.navigate('AddComment')}
+                    onPress={() => navigation.navigate('CreateClass')}
                 />
             </SpeedDial>
         </View>
