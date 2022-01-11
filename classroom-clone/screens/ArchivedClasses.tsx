@@ -53,7 +53,9 @@ export default function ArchivedClasses({ navigation }: any) {
     }, []);
 
     const renderClassContainer = ({ item }: { item: any }) => (
-        <TouchableOpacity onPress={() => navigation.navigate('ClassView', item)}>
+        <TouchableOpacity
+            onPress={() => navigation.navigate('ClassView', { item: item, isOwner: true })}
+        >
             <ClassContainer name={item.name} color={item.color} />
         </TouchableOpacity>
     );
