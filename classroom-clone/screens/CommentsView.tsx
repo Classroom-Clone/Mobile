@@ -42,23 +42,23 @@ export default function CommentsView({ route }: any) {
                     {comments?.data.map((comment) => (
                         <CommentComponent key={comment.id} comment={comment} />
                     ))}
+                    <View>
+                        <Input
+                            style={{ color: 'white' }}
+                            placeholder="Komentarz"
+                            rightIcon={
+                                <Icon
+                                    name="sc-telegram"
+                                    type="evilicon"
+                                    color="#517fa4"
+                                    onPress={() => handlePress()}
+                                />
+                            }
+                            onChangeText={(value) => setCommentContent(value)}
+                        />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
-            <View>
-                <Input
-                    style={{ color: 'white' }}
-                    placeholder="Komentarz"
-                    rightIcon={
-                        <Icon
-                            name="sc-telegram"
-                            type="evilicon"
-                            color="#517fa4"
-                            onPress={() => handlePress()}
-                        />
-                    }
-                    onChangeText={(value) => setCommentContent(value)}
-                />
-            </View>
         </View>
     );
 }

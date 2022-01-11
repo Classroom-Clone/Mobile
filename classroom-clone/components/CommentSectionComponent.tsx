@@ -9,6 +9,7 @@ interface IDefaultProps {
 
 export default function CommentSectionComponent(props: IDefaultProps) {
     const { comments } = props;
+
     return (
         <View>
             {comments?.map((comment) => (
