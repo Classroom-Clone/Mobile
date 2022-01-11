@@ -38,8 +38,6 @@ export default function CreatePostView({ route }: any) {
     const [title, setTitle] = React.useState('');
     const [attachments, setAttachments] = React.useState([]);
 
-    console.log(route.params);
-
     const [doc, setDoc] = React.useState<DocumentResult>();
 
     const pickDocument = async () => {
