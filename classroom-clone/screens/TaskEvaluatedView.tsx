@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { Input, Text } from 'react-native-elements';
 import Toast from 'react-native-toast-message';
 import CommentSectionComponent from '../components/CommentSectionComponent';
@@ -61,51 +61,55 @@ export default function TaskEvaluatedView({ route }: any) {
 
     return (
         <View style={styles.container}>
-            <EvaluatedAtachmentsComponent attachments={attachmentsList} user={user} />
-            <EvaluatedCommentComponent id={id} />
-            <View>
-                <Input
-                    style={{
-                        color: 'white',
-                        width: 150,
-                        textAlign: 'center'
-                    }}
-                    keyboardType="numeric"
-                    multiline
-                    placeholder="Ocena"
-                    onChangeText={(value) => setPoints(Number(value))}
-                />
-                <View
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        borderBottomColor: 'grey',
-                        borderBottomWidth: 2
-                    }}
-                >
-                    <StyledButtonComponent
-                        method={() => handleEvaluateSubmission()}
-                        title="Oceń"
-                        width={100}
-                    />
-                    <StyledButtonComponent
-                        method={() => handleReturnSubmission()}
-                        title="Zwróć"
-                        width={100}
-                    />
-                </View>
-                <Text
-                    style={{
-                        textAlign: 'center',
-                        color: 'white',
-                        padding: 10
-                    }}
-                    h3
-                >
-                    Komentarze
-                </Text>
-                {comments !== null && <CommentSectionComponent comments={comments.data} />}
-            </View>
+            <SafeAreaView>
+                <ScrollView>
+                    <EvaluatedAtachmentsComponent attachments={attachmentsList} user={user} />
+                    <EvaluatedCommentComponent id={id} />
+                    <View>
+                        <Input
+                            style={{
+                                color: 'white',
+                                width: 150,
+                                textAlign: 'center'
+                            }}
+                            keyboardType="numeric"
+                            multiline
+                            placeholder="Ocena"
+                            onChangeText={(value) => setPoints(Number(value))}
+                        />
+                        <View
+                            style={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                borderBottomColor: 'grey',
+                                borderBottomWidth: 2
+                            }}
+                        >
+                            <StyledButtonComponent
+                                method={() => handleEvaluateSubmission()}
+                                title="Oceń"
+                                width={100}
+                            />
+                            <StyledButtonComponent
+                                method={() => handleReturnSubmission()}
+                                title="Zwróć"
+                                width={100}
+                            />
+                        </View>
+                        <Text
+                            style={{
+                                textAlign: 'center',
+                                color: 'white',
+                                padding: 10
+                            }}
+                            h3
+                        >
+                            Komentarze
+                        </Text>
+                        {comments !== null && <CommentSectionComponent comments={comments.data} />}
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
         </View>
     );
 }

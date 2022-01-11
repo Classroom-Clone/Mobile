@@ -95,7 +95,6 @@ export default function CreateAssignmentView({ navigation, route }: any) {
         if ((/^\d+$/.test(text) || text === '') && +text <= 100) {
             setPoints(Number(text));
         }
-        console.log(new Date().toLocaleDateString());
     };
 
     const onDateChange = (event: any, selectedDate: any) => {
